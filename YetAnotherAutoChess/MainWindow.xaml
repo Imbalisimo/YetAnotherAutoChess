@@ -29,5 +29,6 @@
             ShowFrameRate="True"
             ShowViewCube="False">
         </hx:Viewport3DX>
+        <Canvas x:Name="mainCanvas" HorizontalAlignment="Stretch" Height="410" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="784"/>
     </Grid>
 </Window>

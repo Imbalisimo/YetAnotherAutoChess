@@ -21,7 +21,7 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using OrthographicCamera = HelixToolkit.Wpf.SharpDX.OrthographicCamera;
 
-namespace HelixTest
+namespace YetAnotherAutoChess
 {
     class MainViewModel : BaseViewModel
     {

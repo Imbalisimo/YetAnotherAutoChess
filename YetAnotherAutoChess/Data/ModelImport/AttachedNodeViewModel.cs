@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using HelixToolkit.Wpf.SharpDX;
 using HelixToolkit.Wpf.SharpDX.Model.Scene;
 
-namespace HelixTest
+namespace YetAnotherAutoChess
 {
     class AttachedNodeViewModel : ObservableObject
     {

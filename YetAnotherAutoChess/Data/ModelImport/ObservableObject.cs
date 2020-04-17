@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HelixTest
+namespace YetAnotherAutoChess
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;

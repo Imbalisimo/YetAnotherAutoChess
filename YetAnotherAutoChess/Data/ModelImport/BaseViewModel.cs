@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using HelixToolkit.Wpf.SharpDX;
 using System.IO;
 
-namespace HelixTest
+namespace YetAnotherAutoChess
 {
     public abstract class BaseViewModel : ObservableObject, IDisposable
     {
