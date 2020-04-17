@@ -107,11 +107,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\AttachedNodeViewModel.cs" />
-    <Compile Include="Data\BaseViewModel.cs" />
-    <Compile Include="Data\DelegateCommand.cs" />
-    <Compile Include="Data\MainViewModel.cs" />
-    <Compile Include="Data\ObservableObject.cs" />
+    <Compile Include="Data\ModelImport\AttachedNodeViewModel.cs" />
+    <Compile Include="Data\ModelImport\BaseViewModel.cs" />
+    <Compile Include="Data\ModelImport\DelegateCommand.cs" />
+    <Compile Include="Data\ModelImport\MainViewModel.cs" />
+    <Compile Include="Data\ModelImport\ObservableObject.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
