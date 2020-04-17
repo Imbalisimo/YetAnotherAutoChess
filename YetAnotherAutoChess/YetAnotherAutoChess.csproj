@@ -116,6 +116,7 @@
     <Compile Include="Data\ModelImport\DelegateCommand.cs" />
     <Compile Include="Data\ModelImport\MainViewModel.cs" />
     <Compile Include="Data\ModelImport\ObservableObject.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

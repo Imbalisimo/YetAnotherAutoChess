@@ -205,7 +205,13 @@ namespace YetAnotherAutoChess
                 {
                     n.Tag = new AttachedNodeViewModel(n);
                 }
-            }   
+            }
+            GroupModel.IsHitTestVisible = false;
+        }
+
+        public void EnableHitTest(bool isHittable)
+        {
+            GroupModel.IsHitTestVisible = isHittable;
         }
 
         public void MoveTo(Vector3D vector)
