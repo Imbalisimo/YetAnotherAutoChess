@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YetAnotherAutoChess"
         mc:Ignorable="d"
+        xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <hx:Viewport3DX
+            x:Name="view"
+            Grid.Row="1"
+            BackgroundColor="#595959"
+            CameraMode="FixedPosition"
+            IsZoomEnabled="False"
+            ShowFrameRate="True"
+            ShowViewCube="False">
+        </hx:Viewport3DX>
     </Grid>
 </Window>
