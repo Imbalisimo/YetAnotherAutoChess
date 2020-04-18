@@ -14,6 +14,7 @@ namespace YetAnotherAutoChess.Business
         {
             objects = new List<GameObject>();
             Thread thread = new Thread(Loop);
+            //thread.SetApartmentState(ApartmentState.STA);
             thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }

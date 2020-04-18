@@ -18,7 +18,12 @@ namespace YetAnotherAutoChess.Business
             LoopManager.AddGameObject(this);
         }
 
-
         public abstract void Update();
+
+        public void Destroy()
+        {
+            _mainViewModel = null;
+            UIElements.Clear();
+        }
     }
 }
