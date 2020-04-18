@@ -205,10 +205,21 @@ namespace YetAnotherAutoChess
                 {
                     n.Tag = new AttachedNodeViewModel(n);
                 }
-            }   
+            }
+            GroupModel.IsHitTestVisible = false;
         }
 
-        public void MoveTo(Vector3D vector)
+        public void EnableHitTest(bool isHittable)
+        {
+            GroupModel.IsHitTestVisible = isHittable;
+        }
+
+        public void SetActive(bool active)
+        {
+            GroupModel.IsEnabled = active;
+        }
+
+        public void MoveTo(Point3D point)
         {
             int i = 0;
             foreach (var node in scene.Root.Traverse())
@@ -228,12 +239,20 @@ namespace YetAnotherAutoChess
                                                        originalPosition.M32,
                                                        originalPosition.M33,
                                                        originalPosition.M34,
-                                                       originalPosition.M41 + (float)vector.X,
-                                                       originalPosition.M42 + (float)vector.Y,
+                                                       originalPosition.M41 + (float)point.X,
+                                                       originalPosition.M42 + (float)point.Y,
                                                        originalPosition.M43,
-                                                       originalPosition.M44 + (float)vector.Z);
+                                                       originalPosition.M44 + (float)point.Z);
                 }
             }
+        }
+
+        public Point3D Position()
+        {
+            return new Point3D(
+                scene.Root.ModelMatrix.ToMatrix3D().OffsetX,
+                scene.Root.ModelMatrix.ToMatrix3D().OffsetY,
+                scene.Root.ModelMatrix.ToMatrix3D().OffsetZ);
         }
 
         public void ChangeColor(Vector3D color)
