@@ -3,22 +3,241 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HelixTest"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        <Canvas x:Key="unitStatusBar"  x:Shared="false" Width="auto" Height="auto">
-            <Viewbox Name="ViewPort1">
-                <ProgressBar x:Name="unitManaBar" HorizontalAlignment="Stretch" Height="10" Margin="343,10,-51,0" VerticalAlignment="Stretch" Width="100" Value="50" Foreground="#FF0639B0">
-                    <ProgressBar.RenderTransform>
-                        <ScaleTransform ScaleX="1" ScaleY="1" />
-                    </ProgressBar.RenderTransform>
-                </ProgressBar>
-            </Viewbox>
-            <Viewbox Name="ViewPort2">
-                <ProgressBar x:Name="unitHealthBar" HorizontalAlignment="Stretch" Height="5" Margin="343,10,-56,0" VerticalAlignment="Stretch" Width="100" Value="100">
-                    <ProgressBar.RenderTransform>
-                        <ScaleTransform ScaleX="1" ScaleY="1" />
-                    </ProgressBar.RenderTransform>
-                </ProgressBar>
-            </Viewbox>
-        </Canvas>
-    </Application.Resources>
+  <Application.Resources>
+    <Canvas x:Key="unitStatusBar"  x:Shared="false" Width="auto" Height="auto">
+      <Viewbox Name="ViewPort1">
+        <ProgressBar x:Name="unitManaBar" HorizontalAlignment="Stretch" Height="10" Margin="343,10,-51,0" VerticalAlignment="Stretch" Width="100" Value="50" Foreground="#FF0639B0">
+          <ProgressBar.RenderTransform>
+            <ScaleTransform ScaleX="1" ScaleY="1" />
+          </ProgressBar.RenderTransform>
+        </ProgressBar>
+      </Viewbox>
+      <Viewbox Name="ViewPort2">
+        <ProgressBar x:Name="unitHealthBar" HorizontalAlignment="Stretch" Height="5" Margin="343,10,-56,0" VerticalAlignment="Stretch" Width="100" Value="100">
+          <ProgressBar.RenderTransform>
+            <ScaleTransform ScaleX="1" ScaleY="1" />
+          </ProgressBar.RenderTransform>
+        </ProgressBar>
+      </Viewbox>
+    </Canvas>
+
+    <Grid x:Key="userMainGui"  HorizontalAlignment="Center" Height="100" VerticalAlignment="Bottom"  Margin="90,300,0,0" Canvas.Bottom="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition> 
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="72" Margin="0,14,0,0">
+        <Image Height="72" Width="137"/>
+      </Button>
+      <Button HorizontalAlignment="Left" Height="72" Margin="139,14,0,0" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2">
+        <Image Height="69" Width="137"/>
+      </Button>
+      <Button Grid.Column="1" HorizontalAlignment="Left" Height="72" Margin="139.8,14,0,0" VerticalAlignment="Top" Width="139" Grid.ColumnSpan="2">
+        <Image Height="72" Width="130"/>
+      </Button>
+      <Button Grid.ColumnSpan="3" Grid.Column="2" HorizontalAlignment="Left" Height="72" Margin="138.8,14,0,0" VerticalAlignment="Top" Width="143">
+        <Image Height="72" Width="136"/>
+      </Button>
+      <Button Grid.Column="3" HorizontalAlignment="Left" Height="72" Margin="139.6,14,-0.4,0" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2">
+        <Image Height="72" Width="130"/>
+      </Button>
+    </Grid>
+    <Grid x:Key="DefaultPieceGrid"  HorizontalAlignment="Center" Height="58" VerticalAlignment="Bottom" Width="70" Margin="10,0,713.6,15" Canvas.Bottom="0" >
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Uid="Piece" Name="Pawn" Grid.Column="0" Grid.Row="2">
+        <Image></Image>
+      </Button>
+      <Button Uid="Piece" Name="Bishop" Grid.Column="1" Grid.Row="2">
+        <Image></Image>
+      </Button>
+      <Button Uid="Piece" Name="Knight" Grid.Column="2" Grid.Row="2">
+        <Image ></Image>
+      </Button>
+      <Button Uid="Piece" Name="Rook" Grid.Column="3" Grid.Row="2">
+        <Image></Image>
+      </Button>
+      <Button Uid="Piece" Name="Queen" Grid.Column="4" Grid.Row="2">
+        <Image></Image>
+      </Button>
+      <Button  Height="19" Grid.ColumnSpan="5" Content="Default piece" FontSize="8" Grid.Row="1">
+      </Button>
+      <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+        <Image />
+      </Button>
+      <Button Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
+        <Image/>
+      </Button>
+    </Grid>
+
+    <Grid x:Key="Unit0" Canvas.Bottom="0" HorizontalAlignment="Center" Height="14" VerticalAlignment="Bottom" Width="140" Margin="91,0,562.6,86">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="1">
+        <Image ></Image>
+      </Button>
+      <Button Grid.Column="2">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="3">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="4">
+        <Image></Image>
+      </Button>
+    </Grid>
+    <Grid x:Key="Unit1" Canvas.Bottom="0" HorizontalAlignment="Center" Height="14" VerticalAlignment="Bottom" Width="140" Margin="231,0,422.6,86">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="1">
+        <Image ></Image>
+      </Button>
+      <Button Grid.Column="2">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="3">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="4">
+        <Image></Image>
+      </Button>
+    </Grid>
+    <Grid x:Key="Unit2" Canvas.Bottom="0" HorizontalAlignment="Center" Height="14" VerticalAlignment="Bottom" Width="140" Margin="370,0,284.6,86">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="1">
+        <Image ></Image>
+      </Button>
+      <Button Grid.Column="2">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="3">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="4">
+        <Image></Image>
+      </Button>
+    </Grid>
+    <Grid x:Key="Unit3" Canvas.Bottom="0" HorizontalAlignment="Center" Height="14" VerticalAlignment="Bottom" Width="140" Margin="509,0,143.6,86">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="1">
+        <Image ></Image>
+      </Button>
+      <Button Grid.Column="2">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="3">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="4">
+        <Image></Image>
+      </Button>
+    </Grid>
+    <Grid x:Key="Unit4" Canvas.Bottom="0" HorizontalAlignment="Center" Height="14" VerticalAlignment="Bottom" Width="140" Margin="649,0,4.6,86">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="1">
+        <Image ></Image>
+      </Button>
+      <Button Grid.Column="2">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="3">
+        <Image></Image>
+      </Button>
+      <Button Grid.Column="4">
+        <Image></Image>
+      </Button>
+    </Grid>
+    <Grid x:Key="PlayersStatus"  HorizontalAlignment="Stretch" Height="177"  VerticalAlignment="Stretch" Width="131" Canvas.Right="0" >
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,0,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,20,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,40,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,60,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,80,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,100,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,120,0,0" VerticalAlignment="Top" Width="89"/>
+      <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,140,0,0" VerticalAlignment="Top" Width="89"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,40,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <TextBox Uid="HealthValue" Background="Transparent" HorizontalAlignment="Left" Height="14" Margin="10,140,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="89" IsReadOnly="True"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,0,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,20,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,40,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,60,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,80,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,100,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,120,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <ProgressBar Uid="MoneyBar" HorizontalAlignment="Left" Height="15" Margin="105,140,0,0" VerticalAlignment="Top" Width="25" Orientation="Vertical" Value="50" Foreground="#FFDFCA11"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,0,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,20,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,40,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,60,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,80,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,100,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,120,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+      <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,140,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
+    </Grid>
+
+  </Application.Resources>
 </Application>

@@ -155,7 +155,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Point.cs" />
+    <Compile Include="Presentation\DefaultPieceSelector.cs" />
+    <Compile Include="Presentation\PlayersUI.cs" />
     <Compile Include="Presentation\StatusBarInfo.cs" />
+    <Compile Include="Presentation\UnitShopButtonsUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
