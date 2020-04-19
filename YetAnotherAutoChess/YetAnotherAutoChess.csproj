@@ -135,6 +135,7 @@
     <Compile Include="Business\GameAssets\BoardAssets\BoardTile.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\DPSmanager.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\FigureGraph.cs" />
+    <Compile Include="Business\GameAssets\BoardAssets\PieceMover.cs" />
     <Compile Include="Business\GameAssets\MatchManager.cs" />
     <Compile Include="Business\GameAssets\PieceCounter.cs" />
     <Compile Include="Business\GameAssets\Player.cs" />

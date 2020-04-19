@@ -230,7 +230,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
             }
         }
 
-        private static void Initialize()
+        public static void Initialize()
         {
             _boardTiles = new BoardTile();
             SetUpTheTiles();
@@ -241,6 +241,9 @@ namespace YetAnotherAutoChess.Business.GameAssets
             _activeEnemyFigures = new List<Figure>();
 
             Dijkstra.SetGraph(Figures);
+
+            while (MatchManager.Instance == null)
+                System.Threading.Thread.Sleep(1);
 
             MatchManager.Instance.OnStateChage += matchState =>
             {
@@ -338,6 +341,18 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 }
             }
             return null;
+        }
+
+        internal static BoardTile GetSelectedBoardTile(int row, int column)
+        {
+            if (row >= -1 && row < 8 && column >= 0 && column < 8)
+                return _boardTiles[row, column];
+            return null;
+        }
+
+        public static Figure GetFigureFromPoint(Point point)
+        {
+            return Figures[point.X, point.Y];
         }
 
         public static void MoveFigureToPoisition(Figure _selectedFigure, int row, int column)

@@ -24,6 +24,12 @@ namespace YetAnotherAutoChess.Business
         {
             _mainViewModel = null;
             UIElements.Clear();
+            LoopManager.RemoveGameObject(this);
+        }
+
+        ~GameObject()
+        {
+            Destroy();
         }
     }
 }

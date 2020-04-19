@@ -222,6 +222,7 @@ namespace YetAnotherAutoChess
         public void MoveTo(Point3D point)
         {
             int i = 0;
+
             foreach (var node in scene.Root.Traverse())
             {
                 if (node is MaterialGeometryNode m)

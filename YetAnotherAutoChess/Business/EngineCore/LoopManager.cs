@@ -14,5 +14,10 @@ namespace YetAnotherAutoChess.Business
         {
             loop.AddGameObject(obj);
         }
+
+        public static void RemoveGameObject(GameObject obj)
+        {
+            loop.RemoveGameObject(obj);
+        }
     }
 }
