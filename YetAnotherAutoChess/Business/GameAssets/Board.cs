@@ -332,7 +332,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
             {
                 for (int column = 0; column < _columns; column++)
                 {
-                    if (_boardTiles[row, column].MainViewModel.GroupModel.SceneNode == sceneNode)
+                    if (_boardTiles[row, column].MainViewModel.NodeBelongsToTheModel(sceneNode))
                         return new Point(row, column);
                 }
             }

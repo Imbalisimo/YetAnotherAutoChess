@@ -275,6 +275,16 @@ namespace YetAnotherAutoChess
             }
         }
 
+        public bool NodeBelongsToTheModel(SceneNode sceneNode)
+        {
+            foreach(var node in scene.Root.Traverse())
+            {
+                if (node == sceneNode)
+                    return true;
+            }
+            return false;
+        }
+
         public static void ChangeColorForNode(Vector3D color, SceneNode sceneNode)
         {
             foreach (var node in sceneNode.Traverse())

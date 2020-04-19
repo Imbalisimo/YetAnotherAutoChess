@@ -56,6 +56,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                 {
                     SelectFigure(_selectionRow, _selectionColumn);
                     _lastTilePassed = Board.GetSelectedBoardTile(_selectionRow, _selectionColumn);
+                    _lastTilePassed.ChangeColor(System.Windows.Media.Colors.AliceBlue);
                 }
             }
         }
