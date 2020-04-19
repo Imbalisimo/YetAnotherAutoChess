@@ -180,7 +180,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 figure.OnMove += MoveFigure;
                 figure.PrepareForBattle();
             }
-            DPSmanager.Instance.SetEnemyFigures(_activeEnemyFigures);
+            //DPSmanager.Instance.SetEnemyFigures(_activeEnemyFigures);
         }
 
         public static void SellFigure(Figure figure)
@@ -242,9 +242,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Dijkstra.SetGraph(Figures);
 
-            while (MatchManager.Instance == null)
-                System.Threading.Thread.Sleep(1);
-
             MatchManager.Instance.OnStateChage += matchState =>
             {
                 switch (matchState)
@@ -274,7 +271,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 }
             };
 
-            DPSmanager.Instance.SetAllyFigures(_activeAllyFigures);
             _pieceCounter = new PieceCounter();
         }
 

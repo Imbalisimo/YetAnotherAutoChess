@@ -14,7 +14,8 @@ namespace YetAnotherAutoChess.Business
         {
             objects = new LinkedList<GameObject>();
             Thread thread = new Thread(Loop);
-            thread.SetApartmentState(ApartmentState.MTA);
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
             thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }

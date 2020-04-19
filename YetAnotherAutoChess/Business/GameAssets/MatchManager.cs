@@ -14,7 +14,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         {
             SetupSingleton();
 
-            _stateStartTime = new DateTime();
+            _stateStartTime = DateTime.Now;
             MatchState = Enums.MatchState.Preparation;
             _statesDuration = new List<int>();
             foreach (Enums.MatchState state in System.Enum.GetValues(typeof(Enums.MatchState)))
@@ -82,13 +82,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
             switch (Round)
             {
                 case 1:
-                    Round1Wave(wave);
+                    //Round1Wave(wave);
                     break;
                 case 2:
-                    Round2Wave(wave);
+                    //Round2Wave(wave);
                     break;
                 case 3:
-                    Round3Wave(wave);
+                    //Round3Wave(wave);
                     break;
                 case 8:
                 case 13:
@@ -171,6 +171,9 @@ namespace YetAnotherAutoChess.Business.GameAssets
         }
         public override void Update()
         {
+            if(_stateStartTime == new DateTime())
+                _stateStartTime = DateTime.Now;
+
             if (Time.TimeDifferenceFromNowInSeconds(_stateStartTime) >= _statesDuration[(int)MatchState])
             {
                 _stateStartTime = DateTime.Now;

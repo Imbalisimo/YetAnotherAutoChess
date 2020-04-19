@@ -10,8 +10,15 @@ namespace YetAnotherAutoChess.Business
     {
         public List<System.Windows.FrameworkElement> UIElements;
         private MainViewModel _mainViewModel;
-        internal MainViewModel MainViewModel { get => _mainViewModel; set => _mainViewModel = value; }
-
+        internal MainViewModel MainViewModel
+        {
+            get => _mainViewModel;
+            set
+            {
+                EngineCore.View.AddModel(value);
+                _mainViewModel = value;
+            }
+        }
         protected GameObject()
         {
             UIElements = new List<System.Windows.FrameworkElement>();

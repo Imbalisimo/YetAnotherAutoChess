@@ -16,6 +16,9 @@ namespace YetAnotherAutoChess
         public MainWindow()
         {
             InitializeComponent();
+            Business.EngineCore.View.AddView(view);
+
+            InitializeAssets();
 
             AddEvent(Element3D.MouseDown3DEvent, PieceMover.OnLeftMouseButtonDown);
             AddEvent(Element3D.MouseMove3DEvent, PieceMover.OnLeftMouseButtonHold);
@@ -25,6 +28,7 @@ namespace YetAnotherAutoChess
         private void InitializeAssets()
         {
             Business.GameAssets.MatchManager matchManager = new Business.GameAssets.MatchManager();
+            DPSmanager dpsManager = new DPSmanager();
             Business.GameAssets.Board.Initialize();
         }
 
