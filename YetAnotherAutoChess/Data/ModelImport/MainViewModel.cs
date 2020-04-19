@@ -222,6 +222,7 @@ namespace YetAnotherAutoChess
         public void MoveTo(Point3D point)
         {
             int i = 0;
+
             foreach (var node in scene.Root.Traverse())
             {
                 if (node is MaterialGeometryNode m)
@@ -272,6 +273,16 @@ namespace YetAnotherAutoChess
                     }
                 }
             }
+        }
+
+        public bool NodeBelongsToTheModel(SceneNode sceneNode)
+        {
+            foreach(var node in scene.Root.Traverse())
+            {
+                if (node == sceneNode)
+                    return true;
+            }
+            return false;
         }
 
         public static void ChangeColorForNode(Vector3D color, SceneNode sceneNode)

@@ -9,27 +9,39 @@ namespace YetAnotherAutoChess.Business
 {
     class UpdateLoop
     {
-        public List<GameObject> objects;
+        public LinkedList<GameObject> objects;
         public UpdateLoop()
         {
-            objects = new List<GameObject>();
+            objects = new LinkedList<GameObject>();
             Thread thread = new Thread(Loop);
-            //thread.SetApartmentState(ApartmentState.STA);
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
             thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }
 
         public void AddGameObject(GameObject obj)
         {
-            objects.Add(obj);
+            objects.AddLast(obj); //Add(obj);
+        }
+
+        public void RemoveGameObject(GameObject obj)
+        {
+            objects.Remove(obj);
         }
 
         private void Loop()
         {
             while (true)
             {
-                for (int i = objects.Count - 1; i >= 0; --i)
-                    objects[i].Update();
+                LinkedListNode<GameObject> node = objects.Last;
+                while(node != null)
+                {
+                    node.Value.Update();
+                    node = node.Previous;
+                }
+                //for (int i = objects.Count - 1; i >= 0; --i)
+                //    objects[i].Update();
             }
         }
     }

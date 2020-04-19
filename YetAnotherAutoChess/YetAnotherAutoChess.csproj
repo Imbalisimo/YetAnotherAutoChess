@@ -130,11 +130,13 @@
     <Compile Include="Business\BoardFigureScripts\ShieldPriorityQueue.cs" />
     <Compile Include="Business\BoardFigureScripts\Spell.cs" />
     <Compile Include="Business\BoardFigureScripts\Unit.cs" />
+    <Compile Include="Business\EngineCore\View.cs" />
     <Compile Include="Business\FigureManager.cs" />
     <Compile Include="Business\GameAssets\Board.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\BoardTile.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\DPSmanager.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\FigureGraph.cs" />
+    <Compile Include="Business\GameAssets\BoardAssets\PieceMover.cs" />
     <Compile Include="Business\GameAssets\MatchManager.cs" />
     <Compile Include="Business\GameAssets\PieceCounter.cs" />
     <Compile Include="Business\GameAssets\Player.cs" />

@@ -180,7 +180,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 figure.OnMove += MoveFigure;
                 figure.PrepareForBattle();
             }
-            DPSmanager.Instance.SetEnemyFigures(_activeEnemyFigures);
+            //DPSmanager.Instance.SetEnemyFigures(_activeEnemyFigures);
         }
 
         public static void SellFigure(Figure figure)
@@ -230,7 +230,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
             }
         }
 
-        private static void Initialize()
+        public static void Initialize()
         {
             _boardTiles = new BoardTile();
             SetUpTheTiles();
@@ -271,7 +271,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 }
             };
 
-            DPSmanager.Instance.SetAllyFigures(_activeAllyFigures);
             _pieceCounter = new PieceCounter();
         }
 
@@ -333,11 +332,23 @@ namespace YetAnotherAutoChess.Business.GameAssets
             {
                 for (int column = 0; column < _columns; column++)
                 {
-                    if (_boardTiles[row, column].MainViewModel.GroupModel.SceneNode == sceneNode)
+                    if (_boardTiles[row, column].MainViewModel.NodeBelongsToTheModel(sceneNode))
                         return new Point(row, column);
                 }
             }
             return null;
+        }
+
+        internal static BoardTile GetSelectedBoardTile(int row, int column)
+        {
+            if (row >= -1 && row < 8 && column >= 0 && column < 8)
+                return _boardTiles[row, column];
+            return null;
+        }
+
+        public static Figure GetFigureFromPoint(Point point)
+        {
+            return Figures[point.X, point.Y];
         }
 
         public static void MoveFigureToPoisition(Figure _selectedFigure, int row, int column)
