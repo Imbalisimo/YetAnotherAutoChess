@@ -49,19 +49,19 @@ namespace YetAnotherAutoChess
         {
             foreach (UIElement child in canvas.Children)
             {
-                Viewbox viewbox = child as Viewbox;
-                ProgressBar progress = viewbox.Child as ProgressBar;
-                if (progress.Name == "unitHealthBar")
+                if (child is ProgressBar progress)
                 {
-                    HealthBar = progress;
-                }
-                else if (progress.Name == "unitManaBar")
-                {
-                    ManaBar = progress;
+                    if (progress.Name == "unitHealthBar")
+                    {
+                        HealthBar = progress;
+                    }
+                    else if (progress.Name == "unitManaBar")
+                    {
+                        ManaBar = progress;
+                    }
                 }
             }
         }
-
 
     }
 }

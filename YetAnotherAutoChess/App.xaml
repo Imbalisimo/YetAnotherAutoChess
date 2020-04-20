@@ -1,27 +1,16 @@
-﻿<Application x:Class="HelixTest.App"
+﻿<Application x:Class="YetAnotherAutoChess.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HelixTest"
+             xmlns:local="clr-namespace:YetAnotherAutoChess"
              StartupUri="MainWindow.xaml">
   <Application.Resources>
-    <Canvas x:Key="unitStatusBar"  x:Shared="false" Width="auto" Height="auto">
-      <Viewbox Name="ViewPort1">
-        <ProgressBar x:Name="unitManaBar" HorizontalAlignment="Stretch" Height="10" Margin="343,10,-51,0" VerticalAlignment="Stretch" Width="100" Value="50" Foreground="#FF0639B0">
-          <ProgressBar.RenderTransform>
-            <ScaleTransform ScaleX="1" ScaleY="1" />
-          </ProgressBar.RenderTransform>
-        </ProgressBar>
-      </Viewbox>
-      <Viewbox Name="ViewPort2">
-        <ProgressBar x:Name="unitHealthBar" HorizontalAlignment="Stretch" Height="5" Margin="343,10,-56,0" VerticalAlignment="Stretch" Width="100" Value="100">
-          <ProgressBar.RenderTransform>
-            <ScaleTransform ScaleX="1" ScaleY="1" />
-          </ProgressBar.RenderTransform>
-        </ProgressBar>
-      </Viewbox>
-    </Canvas>
+        <Canvas x:Key="unitStatusBar"  x:Shared="false" SizeChanged="Canvas_SizeChanged">
+            <ProgressBar x:Name="unitManaBar" Height="10" Width="100" Value="50" Foreground="#FF0639B0"/>
+            <ProgressBar x:Name="unitHealthBar"  Width="100" Height="5" Value="100"/>
+            <Image Height="10" Canvas.Left="100" Width="10"/>
+        </Canvas>
 
-    <Grid x:Key="userMainGui"  HorizontalAlignment="Center" Height="100" VerticalAlignment="Bottom"  Margin="90,300,0,0" Canvas.Bottom="0">
+        <Grid x:Key="userMainGui"  HorizontalAlignment="Center" Height="100" VerticalAlignment="Bottom"  Margin="90,300,0,0" Canvas.Bottom="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition> 
                 <ColumnDefinition Width="*"></ColumnDefinition>
