@@ -18,7 +18,7 @@ namespace YetAnotherAutoChess
         public StatusBarInfo(double PositionLeft_To_Right = 100, double PositionBottom_To_Top = 400, double healthBar = 100, double manaBar = 100, int numOfStars = 0)
         {
             canvas = (Application.Current.Resources["unitStatusBar"] as Canvas);
-            setCanvasPosition(PositionLeft_To_Right, PositionBottom_To_Top);
+            //setCanvasPosition(PositionLeft_To_Right, PositionBottom_To_Top);
             SetChildren();
             SetHealth(100);
             SetMana(100);
@@ -41,8 +41,16 @@ namespace YetAnotherAutoChess
 
         public void setCanvasPosition(double PositionLeft_To_Right = 100, double PositionBottom_To_Top = 100)
         {
-            Canvas.SetLeft(canvas, PositionLeft_To_Right);
-            Canvas.SetBottom(canvas, PositionBottom_To_Top);
+            foreach(UIElement child in canvas.Children)
+            {
+                if(child is ProgressBar p)
+                {
+                    p.Margin = new Thickness(PositionLeft_To_Right, PositionBottom_To_Top, 0, 0);
+                }else if(child is Image i)
+                {
+                    i.Margin = new Thickness(PositionLeft_To_Right, PositionBottom_To_Top, 0, 0);
+                }
+            }
         }
 
         public void SetChildren()
