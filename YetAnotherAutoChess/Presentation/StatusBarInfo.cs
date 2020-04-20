@@ -7,21 +7,34 @@ namespace YetAnotherAutoChess
 {
     class StatusBarInfo
     {
+        private float _currentHealthValue;
+        private float _currentManaValue;
+        public float CurrentHealth { get { return _currentHealthValue; } }
+        public float CurrentMana { get { return _currentManaValue; } }
         public Canvas canvas { get; }
         private ProgressBar HealthBar;
         private ProgressBar ManaBar;
+        public Image Stars;
         public StatusBarInfo(double PositionLeft_To_Right = 100, double PositionBottom_To_Top = 400, double healthBar = 100, double manaBar = 100, int numOfStars = 0)
         {
             canvas = (Application.Current.Resources["unitStatusBar"] as Canvas);
             setCanvasPosition(PositionLeft_To_Right, PositionBottom_To_Top);
             SetChildren();
-            setValues(healthBar,manaBar);
+            SetHealth(100);
+            SetMana(100);
         }
-        public void setValues(double healthBar = 100, double manaBar = 100)
+        public void SetHealth(int healthBar = 100)
         {
-            if (healthBar <= 100 && healthBar >= 0 && manaBar >= 0 && manaBar <= 100)
+            if (healthBar != CurrentHealth) 
             {
                 HealthBar.Value = healthBar;
+            }
+        }
+
+        public void SetMana(int manaBar)
+        {
+            if (manaBar != CurrentMana)
+            {
                 ManaBar.Value = manaBar;
             }
         }
@@ -36,17 +49,19 @@ namespace YetAnotherAutoChess
         {
             foreach (UIElement child in canvas.Children)
             {
-                Viewbox viewbox = child as Viewbox;
-                ProgressBar progress = viewbox.Child as ProgressBar;
-                if (progress.Name == "unitHealthBar")
+                if (child is ProgressBar progress)
                 {
-                    HealthBar = progress;
-                }
-                else if (progress.Name == "unitManaBar")
-                {
-                    ManaBar = progress;
+                    if (progress.Name == "unitHealthBar")
+                    {
+                        HealthBar = progress;
+                    }
+                    else if (progress.Name == "unitManaBar")
+                    {
+                        ManaBar = progress;
+                    }
                 }
             }
         }
+
     }
 }

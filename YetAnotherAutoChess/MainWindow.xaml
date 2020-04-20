@@ -9,17 +9,6 @@
         xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.Resources>
-            <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
-        </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
         <hx:Viewport3DX
             x:Name="view"
             Grid.Row="1"
@@ -29,6 +18,9 @@
             ShowFrameRate="True"
             ShowViewCube="False">
         </hx:Viewport3DX>
-        <Canvas x:Name="mainCanvas" HorizontalAlignment="Stretch" Height="410" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="784"/>
+        <Grid Name="TextGrid"></Grid>
+        <Grid x:Name="mainGrid">
+            <Canvas Name="mainCanvas"></Canvas>
+        </Grid>
     </Grid>
 </Window>
