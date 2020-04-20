@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace YetAnotherAutoChess.Business.GameAssets
 {
@@ -13,7 +12,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
         public MatchManager()
         {
             SetupSingleton();
-
             _stateStartTime = DateTime.Now;
             MatchState = Enums.MatchState.Preparation;
             _statesDuration = new List<int>();
@@ -29,6 +27,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
             _round = 1;
 
             Player = Player.Instance;
+            Text = Application.Current.Resources["Counter"] as TextBox;
         }
 
         #region Singleton
@@ -48,7 +47,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         }
         #endregion
 
-        //public Text Text;
+        public TextBox Text;
 
         private int _round;
         public int Level { get => _round > 38 ? 10 : (_round <= 3 ? _round : (_round - 3) / 5 + 3); }
@@ -191,8 +190,16 @@ namespace YetAnotherAutoChess.Business.GameAssets
             stringBuilder.Append(Round.ToString());
             stringBuilder.Append(": ");
             stringBuilder.Append(secondsLeft.ToString());
+            if (Text != null)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() => SetText(stringBuilder.ToString())));
+                //SetText(stringBuilder.ToString());
+            }
+        }
 
-            //Text.text = stringBuilder.ToString();
+        private void SetText(string text)
+        {
+            Text.Text = text;
         }
     }
 }

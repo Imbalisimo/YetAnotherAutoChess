@@ -8,8 +8,8 @@
         xmlns:h="http://helix-toolkit.org/wpf"
         xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
         Title="MainWindow" Height="450" Width="800">
-  <Grid>
-    <hx:Viewport3DX
+    <Grid>
+        <hx:Viewport3DX
             x:Name="view"
             Grid.Row="1"
             BackgroundColor="#595959"
@@ -17,7 +17,10 @@
             IsZoomEnabled="False"
             ShowFrameRate="True"
             ShowViewCube="False">
-    </hx:Viewport3DX>
-    <Canvas x:Name="mainCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" SizeChanged="Canvas_SizeChanged"/>
-  </Grid>
+        </hx:Viewport3DX>
+        <Grid Name="TextGrid"></Grid>
+        <Grid x:Name="mainGrid">
+            <Canvas Name="mainCanvas"></Canvas>
+        </Grid>
+    </Grid>
 </Window>

@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using YetAnotherAutoChess.Presentation;
 
 namespace YetAnotherAutoChess.Business.GameAssets
 {
     public static class UnitShop
     {
+        internal static ShopUI shopUI;
+
         public static bool ShopLocked;
+        public static void Initialize(Grid mainGrid)
+        {
+            shopUI = new ShopUI(new UnitShopButtonsUI(mainGrid));
+        }
         public static void Reroll()
         {
             if (units == null)
@@ -27,11 +35,10 @@ namespace YetAnotherAutoChess.Business.GameAssets
             //units = UnitsPool.GenerateUnits(MatchManager.Instance.Level);
             if (units == null)
                 return;
-
-            //GameObject.Find("UnitPick").GetComponent<ShopUI>().PlaceNewUnits(units);
+            shopUI.PlaceNewUnits(units);
         }
 
-        public static bool BuyUnit(Unit unit, Enums.Piece piece)
+        public static bool BuyUnit(Unit unit, Enums.Piece piece)//To do
         {
             Player player = Player.Instance;
             int cost = Calculators.CostCalculator.CalculateFinalCost(unit, piece);

@@ -30,11 +30,11 @@ namespace YetAnotherAutoChess
             }
         }
         private List<PlayerUI> playerUIs;
-        public PlayersUI(Canvas mainCanvas)
+        public PlayersUI(Grid MainGrid)
         {
             playerUIs = new List<PlayerUI>(8);
             Grid playerStatusGrid = Application.Current.Resources["PlayersStatus"] as Grid;
-            mainCanvas.Children.Add(playerStatusGrid);
+            MainGrid.Children.Add(playerStatusGrid);
             //listPlayerNamesProgressBars(playerStatusGrid);
 
         }

@@ -79,7 +79,7 @@
       <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
         <Image />
       </Button>
-      <Button Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
+      <Button Uid="Lock" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
         <Image/>
       </Button>
     </Grid>
@@ -204,7 +204,7 @@
         <Image></Image>
       </Button>
     </Grid>
-    <Grid x:Key="PlayersStatus"  HorizontalAlignment="Stretch" Height="177"  VerticalAlignment="Stretch" Width="131" Canvas.Right="0" >
+    <Grid x:Key="PlayersStatus"  HorizontalAlignment="Right" Height="177"  VerticalAlignment="Top" Width="131" >
       <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,0,0,0" VerticalAlignment="Top" Width="89"/>
       <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,20,0,0" VerticalAlignment="Top" Width="89"/>
       <ProgressBar Uid="HealthBar" HorizontalAlignment="Left" Height="15" Margin="10,40,0,0" VerticalAlignment="Top" Width="89"/>
@@ -238,6 +238,7 @@
       <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,120,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
       <TextBox Uid="MoneyValue" HorizontalAlignment="Left" Height="15" Margin="105,140,-4,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" Background="Transparent"/>
     </Grid>
+    <TextBox x:Key="Counter" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="250" TextAlignment="Center"/>
 
-  </Application.Resources>
+    </Application.Resources>
 </Application>
