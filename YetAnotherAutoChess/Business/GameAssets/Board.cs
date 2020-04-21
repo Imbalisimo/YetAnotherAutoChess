@@ -211,7 +211,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static void SpawnChessFigure(int index, int row, int column)
         {
-            // quarterion - for orientation, change if needed (default Quaternion.identity)
             Figures[row, column] = AllFigures[index];
             AllFigures[index].MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
             Figures[row, column].Position.Row = row;
