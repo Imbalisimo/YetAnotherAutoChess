@@ -112,7 +112,7 @@
     <Compile Include="Business\BoardFigureScripts\Attack.cs" />
     <Compile Include="Business\BoardFigureScripts\Buff.cs" />
     <Compile Include="Business\BoardFigureScripts\Buffs\BuffExtensions.cs" />
-    <Compile Include="Business\Dijkstra.cs" />
+    <Compile Include="Business\Pathfinding\Dijkstra.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Bishop.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Knight.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Pawn.cs" />
@@ -136,7 +136,7 @@
     <Compile Include="Business\FigureManager.cs" />
     <Compile Include="Business\GameAssets\Board.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\BoardTile.cs" />
-    <Compile Include="Business\GameAssets\BoardAssets\DPSmanager.cs" />
+    <Compile Include="Business\GameAssets\DPSmanager.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\FigureGraph.cs" />
     <Compile Include="Business\GameAssets\BoardAssets\PieceMover.cs" />
     <Compile Include="Business\GameAssets\MatchManager.cs" />
@@ -190,9 +190,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\BoardFigureScripts\Pathfinding\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AssimpNet.4.1.0\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

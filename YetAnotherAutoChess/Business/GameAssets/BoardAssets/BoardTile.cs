@@ -19,7 +19,9 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
         public BoardTile(Point Position, int typeOfTile = 0)
         {
             this.Position = Position;
-            this.MainViewModel = new MainViewModel("C:/Users/Nikola/Documents/Ja_AutoChess/platforma4.fbx");//("./Tile/" + (typeOfTile == 0 ? "BenchTile" : "Tile"));
+            this.MainViewModel = new MainViewModel("C:/Users/Marin/Desktop/Unitythings/platforma4.fbx");
+                //("C:/Users/Nikola/Documents/Ja_AutoChess/platforma4.fbx");
+                //("./Tile/" + (typeOfTile == 0 ? "BenchTile" : "Tile"));
             this.MainViewModel.MoveTo(new Point3D(Position.X * TileSize, Position.Y * TileSize, 0));
             this.MainViewModel.EnableHitTest(true);
             ChangeColor(BoardTile.DefaultColor);
