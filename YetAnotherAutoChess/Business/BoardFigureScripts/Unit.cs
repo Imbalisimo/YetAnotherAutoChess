@@ -21,8 +21,8 @@ namespace YetAnotherAutoChess.Business
         public float CurrentMana;
         public int Star;
 
-        internal abstract Attack AutoAttack();
-        internal abstract Attack Ability();
+        public abstract Attack AutoAttack();
+        public abstract Attack Ability();
 
         public abstract string GetAbilityDescription();
 

@@ -8,7 +8,7 @@ using YetAnotherAutoChess.Enums;
 
 namespace YetAnotherAutoChess.Business
 {
-    class Attack : GameObject
+    public class Attack : GameObject
     {
         public Attack(TargetingSystem targetingSystem, DamageType damageType,
         float projectileSpeed, int range, float projectileDamage,

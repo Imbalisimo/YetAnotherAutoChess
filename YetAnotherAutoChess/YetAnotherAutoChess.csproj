@@ -112,6 +112,7 @@
     <Compile Include="Business\BoardFigureScripts\Attack.cs" />
     <Compile Include="Business\BoardFigureScripts\Buff.cs" />
     <Compile Include="Business\BoardFigureScripts\Buffs\BuffExtensions.cs" />
+    <Compile Include="Business\BoardFigureScripts\Units\Thor.cs" />
     <Compile Include="Business\Pathfinding\Dijkstra.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Bishop.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Knight.cs" />
