@@ -112,6 +112,8 @@
     <Compile Include="Business\BoardFigureScripts\Attack.cs" />
     <Compile Include="Business\BoardFigureScripts\Buff.cs" />
     <Compile Include="Business\BoardFigureScripts\Buffs\BuffExtensions.cs" />
+    <Compile Include="Business\BoardFigureScripts\Units\EarthBigGolem.cs" />
+    <Compile Include="Business\BoardFigureScripts\Units\EarthSmallGolem.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\SynergyPerUnit.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\Thor.cs" />
     <Compile Include="Business\Pathfinding\Dijkstra.cs" />
@@ -183,6 +185,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Models\Tiles\BenchTile.fbx" />
+    <None Include="Models\Tiles\Tile.fbx" />
+    <None Include="Models\Units\EarthBigGolem\model.fbx" />
+    <None Include="Models\Units\EarthSmallGolem\model.fbx" />
+    <None Include="Models\Units\Thor\model.fbx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

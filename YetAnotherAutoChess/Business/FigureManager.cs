@@ -15,7 +15,7 @@ namespace YetAnotherAutoChess.Business
             Unit unit = (Unit)Activator.CreateInstance(type);
             //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Data.Units", name).Unwrap();
 
-            unit.MainViewModel = new MainViewModel("./Units/" + name + "model.fbx");
+            unit.MainViewModel = new MainViewModel("./Models/Units/" + name + "/model.fbx");
             return unit;
         }
 
