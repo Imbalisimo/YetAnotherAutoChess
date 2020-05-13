@@ -64,7 +64,7 @@ namespace YetAnotherAutoChess.Business
             public byte IsInvounrable;
             public byte HasDamageReturn;
 
-            public List<Enums.Synergy> Synergies;
+            public Enums.Synergy Synergies;
 
             public List<Buff> AttackCarriedBuffs;
             public List<Buff> SpellCarriedBuffs;

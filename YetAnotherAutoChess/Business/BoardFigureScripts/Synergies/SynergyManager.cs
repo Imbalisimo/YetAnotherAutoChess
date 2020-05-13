@@ -22,7 +22,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
                 _initialized = true;
             }
 
-            foreach (Enums.Synergy synergy in figure.Unit.Stats.Synergies)
+            foreach (Enums.Synergy synergy in GetIndividualSynergies(figure.Unit.Stats.Synergies))
             {
                 FiguresInSynergy[(int)synergy].Add(figure);
             }
@@ -30,7 +30,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
 
         public static void RemoveFigure(Figure figure)
         {
-            foreach (Enums.Synergy synergy in figure.Unit.Stats.Synergies)
+            foreach (Enums.Synergy synergy in GetIndividualSynergies(figure.Unit.Stats.Synergies))
             {
                 FiguresInSynergy[(int)synergy].Remove(figure);
             }
@@ -54,7 +54,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
             }
 
             // Get blessings that apply to synergy holders
-            foreach (Enums.Synergy synergy in figure.Unit.Stats.Synergies)
+            foreach (Enums.Synergy synergy in GetIndividualSynergies(figure.Unit.Stats.Synergies))
             {
                 if (Synergies[(int)synergy].SynergyBuffTarget == Enums.SynergyBuffTarget.AllAllies)
                     continue;
@@ -72,7 +72,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
         public static List<Figure> FiguresWithSameSynergies(Figure figure)
         {
             List<Figure> figures = new List<Figure>();
-            foreach (Enums.Synergy synergy in figure.Unit.Stats.Synergies)
+            foreach (Enums.Synergy synergy in GetIndividualSynergies(figure.Unit.Stats.Synergies))
             {
                 figures.AddRange(FiguresInSynergy[(int)synergy]);
             }
@@ -176,6 +176,13 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
                     }
                 }
             }
+        }
+
+        public static IEnumerable<Enums.Synergy> GetIndividualSynergies(Enums.Synergy synergy)
+        {
+            foreach (Enums.Synergy s in Enum.GetValues(typeof(Enums.Synergy)))
+                if ((s & synergy) == s)
+                    yield return s;
         }
     }
 }

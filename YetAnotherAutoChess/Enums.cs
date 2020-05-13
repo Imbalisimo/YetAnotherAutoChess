@@ -43,6 +43,7 @@ namespace YetAnotherAutoChess.Enums
         Deity
     }
 
+    [Flags]
     public enum Synergy
     {
         Aztec,

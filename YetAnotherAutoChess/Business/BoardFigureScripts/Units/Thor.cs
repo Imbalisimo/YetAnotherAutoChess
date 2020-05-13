@@ -21,9 +21,9 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Units
             Stats.AttackSpeed = 2;
             Stats.AbilityRange = 1;
             Star = 1;
-            Stats.Synergies = new List<Enums.Synergy>();
-            Stats.Synergies.Add(Enums.Synergy.Norse);   // Mythology
-            Stats.Synergies.Add(Enums.Synergy.Thunder); // Diety
+
+            foreach (Enums.Synergy synergy in Synergies.SynergyManager.GetIndividualSynergies(SynergyPerUnit.GetSynergiesFor(this)))
+                Stats.Synergies = Stats.Synergies | synergy;
         }
 
         public override Attack Ability()

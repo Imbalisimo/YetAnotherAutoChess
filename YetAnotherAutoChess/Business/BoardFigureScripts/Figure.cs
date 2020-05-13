@@ -27,9 +27,14 @@ namespace YetAnotherAutoChess.Business
         //public FigureUIManager FigureUIManager;
         public int Cost;
 
-        public Enums.Synergy Mythology { get => Unit.Stats.Synergies[0]; }
-        public Enums.Synergy Diety { get => Unit.Stats.Synergies[1]; }
-        public Enums.Synergy AdditionalDiety { get => Unit.Stats.Synergies.Count > 2 ? Unit.Stats.Synergies[2] : Enums.Synergy.none; }
+        public Enums.Synergy Mythology { get => 
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[0]; }
+        public Enums.Synergy Diety { get =>
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[1]; }
+        public Enums.Synergy AdditionalDiety { get =>
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList().Count > 2 ?
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[2] :
+                Enums.Synergy.none; }
 
         public int Star { get => Unit.Star; }
 
