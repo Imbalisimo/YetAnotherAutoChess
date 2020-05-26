@@ -14,7 +14,7 @@ namespace AutoChessPlayerLibrary
     }
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    class DuplexChatService
+    public class DuplexChatService : IDuplexChatService
     {
         Dictionary<IDuplexChatClient, string> _users = new Dictionary<IDuplexChatClient, string>();
         public delegate void MessageSent(object sender, MessageEventArgs e);
