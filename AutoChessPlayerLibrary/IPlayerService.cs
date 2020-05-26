@@ -9,7 +9,7 @@ namespace AutoChessPlayerLibrary
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IPlayerService
     {
         [OperationContract]
         string GetData(int value);
@@ -17,7 +17,29 @@ namespace AutoChessPlayerLibrary
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        // TODO: Add your service operations here
+
+        #region Units
+        [OperationContract]
+        List<BaseUnitPackage> RequestRandomUnitsFromPool(int playerLevel, int count);
+
+        [OperationContract]
+        void MoveUnit(string playerUsername, FigurePackage unit);
+
+        [OperationContract]
+        void ReturnUnitToPool(BaseUnitPackage unit);
+        #endregion
+
+        #region Players
+        [OperationContract]
+        void RegisterPlayer(PlayerPackage myself);
+
+        [OperationContract]
+        List<FigurePackage> GetOpponentsUnits(string myUsername);
+
+        [OperationContract]
+        void TakeDamage(string username, int hp);
+        #endregion
+
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
