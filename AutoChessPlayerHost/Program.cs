@@ -25,8 +25,9 @@ namespace AutoChessPlayerHost
             {
                 selfHost.AddServiceEndpoint(
                     typeof(AutoChessPlayerLibrary.IPlayerService),
-                    new WSHttpBinding(),
-                    "AutoChessPlayerLibrary/PlayerService");
+                    //new WSHttpBinding(),
+                    new BasicHttpBinding(),
+                    "AutoChessPlayerLibrary/PlayerService"); ;
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
