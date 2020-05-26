@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YetAnotherAutoChess", "YetAnotherAutoChess\YetAnotherAutoChess.csproj", "{939AAEDA-4917-4A01-89A9-654686E00D8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoChessPlayerHost", "AutoChessPlayerHost\AutoChessPlayerHost.csproj", "{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoChessPlayerLibrary", "AutoChessPlayerLibrary\AutoChessPlayerLibrary.csproj", "{F0BF1E5F-3058-489E-AE52-15BEDB80DA8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{939AAEDA-4917-4A01-89A9-654686E00D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{939AAEDA-4917-4A01-89A9-654686E00D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{939AAEDA-4917-4A01-89A9-654686E00D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0BF1E5F-3058-489E-AE52-15BEDB80DA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0BF1E5F-3058-489E-AE52-15BEDB80DA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0BF1E5F-3058-489E-AE52-15BEDB80DA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0BF1E5F-3058-489E-AE52-15BEDB80DA8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
