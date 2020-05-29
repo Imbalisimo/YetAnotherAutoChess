@@ -40,28 +40,38 @@ namespace YetAnotherAutoChess
         {
             public static int CalculateFinalCost(Unit unit, Enums.Piece piece)
             {
+                return CalculateFinalCost(unit.Cost, piece);
+            }
+
+            public static int CalculateFinalCost(PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece)
+            {
+                return CalculateFinalCost(unit.Cost, piece);
+            }
+
+            private static int CalculateFinalCost(int cost, Enums.Piece piece)
+            {
                 switch (piece)
                 {
                     case Enums.Piece.Pawn:
-                        if (unit.Cost <= 8)
-                            return unit.Cost;
+                        if (cost <= 8)
+                            return cost;
                         return 0;
                     case Enums.Piece.Bishop:
-                        if (unit.Cost <= 3)
+                        if (cost <= 3)
                             return 3;
-                        if (unit.Cost <= 6)
+                        if (cost <= 6)
                             return 6;
                         return 0;
                     case Enums.Piece.Knight:
-                        if (unit.Cost <= 4)
+                        if (cost <= 4)
                             return 4;
-                        if (unit.Cost <= 8)
+                        if (cost <= 8)
                             return 8;
                         return 0;
                     case Enums.Piece.Rook:
-                        if (unit.Cost <= 5)
+                        if (cost <= 5)
                             return 5;
-                        if (unit.Cost <= 10)
+                        if (cost <= 10)
                             return 10;
                         return 0;
                     case Enums.Piece.Queen:

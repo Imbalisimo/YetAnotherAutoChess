@@ -367,5 +367,25 @@ namespace YetAnotherAutoChess.Business
                 //FigureUIManager.PromoteToTwoStar();
             }
         }
+
+        public PlayerServiceReference.FigurePackage ToFigurePackage()
+        {
+            PlayerServiceReference.FigurePackage figure = new PlayerServiceReference.FigurePackage();
+            figure.Name = Unit.Name;
+            figure.NewRow = Position.Row;
+            figure.NewColumn = Position.Column;
+            figure.Piece = Piece.PieceType.ToString();
+            figure.PieceToggled = Piece.Toggled;
+            figure.Star = Star.ToString();      // STAR NEEDS TO BE INTEGER
+            return figure;
+        }
+
+        public void ApplyFigurePackageProperties(PlayerServiceReference.FigurePackage figure)
+        {
+            Position.Row = figure.NewRow;
+            Position.Column = figure.NewColumn;
+            Unit.Star = Int32.Parse(figure.Star);
+            if (figure.PieceToggled) Piece.Toggle();
+        }
     }
 }

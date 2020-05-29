@@ -22,7 +22,7 @@ namespace YetAnotherAutoChess
         private string absolutePath;
         private Button LockButton;
 
-        public delegate void UnitBuyAttempt(Grid grid, Button button, Unit unit, Enums.Piece piece);
+        public delegate void UnitBuyAttempt(Grid grid, Button button, PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece);
         public event UnitBuyAttempt OnUnitBuyAttempt;
 
         public delegate void onRerollAttempt(Button button);
@@ -146,11 +146,11 @@ namespace YetAnotherAutoChess
                     i.Source = new System.Windows.Media.Imaging.BitmapImage(uri);
                     counter++;
                     b.DataContext = parentButton.DataContext;
-                    b.Click += (o, e) => { UnitWantsToBeBought(grid, parentButton, (Unit)parentButton.DataContext, (Enums.Piece)counter + 1); };
+                    b.Click += (o, e) => { UnitWantsToBeBought(grid, parentButton, (PlayerServiceReference.BaseUnitPackage)parentButton.DataContext, (Enums.Piece)counter + 1); };
                 }
             }
         }
-        public void UnitWantsToBeBought(Grid grid, Button button, Unit unit, Enums.Piece piece)
+        public void UnitWantsToBeBought(Grid grid, Button button, PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece)
         {
             OnUnitBuyAttempt(grid,button, unit, piece);
         }

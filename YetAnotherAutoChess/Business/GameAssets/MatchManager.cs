@@ -99,6 +99,9 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 case 43:
                 case 48:
                     break;
+                default:
+                    EnemyWave(wave);
+                    break;
             }
 
             foreach (Figure figure in wave)
@@ -108,6 +111,15 @@ namespace YetAnotherAutoChess.Business.GameAssets
             }
 
             Board.SpawnEnemyFigures(wave);
+        }
+
+        private void EnemyWave(List<Figure> wave)
+        {
+            List<PlayerServiceReference.FigurePackage> figures = PlayerClient.RequestEnemyFigures();
+            foreach(PlayerServiceReference.FigurePackage f in figures)
+            {
+                wave.Add(FigureManager.CreateFigureFromPackage(f));
+            }
         }
 
         private void Round1Wave(List<Figure> wave)

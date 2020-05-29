@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YetAnotherAutoChess", "YetAnotherAutoChess\YetAnotherAutoChess.csproj", "{939AAEDA-4917-4A01-89A9-654686E00D8E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9889BF7-C566-4846-9FB5-A15EF329CA05} = {C9889BF7-C566-4846-9FB5-A15EF329CA05}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoChessPlayerHost", "AutoChessPlayerHost\AutoChessPlayerHost.csproj", "{1C134CCE-A70E-4B96-87DC-71D5A15F35EA}"
 EndProject

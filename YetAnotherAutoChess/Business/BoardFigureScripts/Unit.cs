@@ -74,5 +74,15 @@ namespace YetAnotherAutoChess.Business
             public delegate void MaxManaIncrease(float health);
             public event MaxManaIncrease OnMaxManaIncrease;
         }
+
+        public string Name { get => GetType().Name; }
+
+        public PlayerServiceReference.BaseUnitPackage ToUnitPackage()
+        {
+            PlayerServiceReference.BaseUnitPackage unit = new PlayerServiceReference.BaseUnitPackage();
+            unit.Name = Name;
+            unit.Cost = Cost;
+            return unit;
+        }
     }
 }

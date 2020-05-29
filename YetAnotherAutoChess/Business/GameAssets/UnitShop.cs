@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using YetAnotherAutoChess.PlayerServiceReference;
 using YetAnotherAutoChess.Presentation;
 
 namespace YetAnotherAutoChess.Business.GameAssets
@@ -12,33 +13,36 @@ namespace YetAnotherAutoChess.Business.GameAssets
     {
         internal static ShopUI shopUI;
 
+        public static int NumberOfUnits { get => 5; }
         public static bool ShopLocked;
+        private static List<BaseUnitPackage> units = new List<BaseUnitPackage>();
+
         public static void Initialize(Grid mainGrid)
         {
             shopUI = new ShopUI(new UnitShopButtonsUI(mainGrid));
         }
+
         public static void Reroll()
         {
             if (units == null)
-                units = new List<Unit>();
+                units = new List<BaseUnitPackage>();
 
-            foreach (GameObject unit in units)
+            foreach (BaseUnitPackage unit in units)
             {
                 ReturnUnitToPool(unit);
             }
             PlaceNewUnitsInShop();
         }
 
-        private static List<Unit> units = new List<Unit>();
         public static void PlaceNewUnitsInShop()
         {
-            //units = UnitsPool.GenerateUnits(MatchManager.Instance.Level);
+            units = PlayerClient.RequestRandomUnitsFromPool(MatchManager.Instance.Level, NumberOfUnits);
             if (units == null)
                 return;
             shopUI.PlaceNewUnits(units);
         }
 
-        public static bool BuyUnit(Unit unit, Enums.Piece piece)//To do
+        public static bool BuyUnit(BaseUnitPackage unit, Enums.Piece piece)//To do
         {
             Player player = Player.Instance;
             int cost = Calculators.CostCalculator.CalculateFinalCost(unit, piece);
@@ -47,6 +51,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             if (!Board.SpawnFigure(unit, piece))
                 return false;
+
             player.Pawns -= cost;
             units.Remove(unit);
             return true;
@@ -59,16 +64,16 @@ namespace YetAnotherAutoChess.Business.GameAssets
             Player player = Player.Instance;
             player.Pawns += figure.Cost;
 
-            FigureManager.Disassemble(figure);
-            foreach (GameObject unit in units)
+            List<BaseUnitPackage> units = FigureManager.Disassemble(figure);
+            foreach (BaseUnitPackage unit in units)
             {
                 ReturnUnitToPool(unit);
             }
         }
 
-        public static void ReturnUnitToPool(GameObject unit)
+        public static void ReturnUnitToPool(BaseUnitPackage unit)
         {
-            //UnitsPool.PutUnitInPool(unit);
+            PlayerClient.ReturnUnitToPool(unit);
         }
     }
 }

@@ -19,6 +19,12 @@ namespace YetAnotherAutoChess.Business
             return unit;
         }
 
+        public static Figure CreateFigure(PlayerServiceReference.BaseUnitPackage unitPackage, Enums.Piece piece)
+        {
+            Unit unit = CreateUnit(unitPackage.Name);
+            return CreateFigure(unit, piece);
+        }
+
         public static Figure CreateFigure(Unit unit, Enums.Piece piece)
         {
             Figure figure = new Figure();
@@ -55,14 +61,25 @@ namespace YetAnotherAutoChess.Business
             }
         }
 
-        public static void Disassemble(Figure figure)
+        public static Figure CreateFigureFromPackage(PlayerServiceReference.FigurePackage figurePackage)
         {
+            Unit unit = CreateUnit(figurePackage.Name);
+            Enums.Piece piece = (Enums.Piece)Enum.Parse(typeof(Enums.Piece), figurePackage.Piece);
+            Figure figure = CreateFigure(unit, piece);
+            figure.ApplyFigurePackageProperties(figurePackage);
+            return figure;
+        }
+
+        public static List<PlayerServiceReference.BaseUnitPackage> Disassemble(Figure figure)
+        {
+            List<PlayerServiceReference.BaseUnitPackage> units = new List<PlayerServiceReference.BaseUnitPackage>();
             foreach (Figure sacrifice in figure.Sacrifices)
             {
-                Disassemble(sacrifice);
+                units.AddRange(Disassemble(sacrifice));
             }
 
             Unit unit = figure.Unit;
+            units.Add(unit.ToUnitPackage());
             //GameObject UI = figure.FigureUIManager;
 
             figure.Unit.Destroy();
@@ -70,7 +87,8 @@ namespace YetAnotherAutoChess.Business
 
             figure.Destroy();
             //UI.Destroy();
-            
+
+            return units;
         }
     }
 }

@@ -27,6 +27,7 @@ namespace YetAnotherAutoChess
 
         private void InitializeAssets()
         {
+            PlayerClient.Start();
             Business.GameAssets.MatchManager matchManager = new Business.GameAssets.MatchManager();
             DPSmanager dpsManager = new DPSmanager();
             Business.GameAssets.Board.Initialize();
@@ -59,6 +60,12 @@ namespace YetAnotherAutoChess
                         Action(node);
                     }
             }));
+        }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            PlayerClient.Close();
+            base.OnClosed(e);
         }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)

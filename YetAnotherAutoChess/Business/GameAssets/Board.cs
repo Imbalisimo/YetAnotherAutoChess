@@ -26,7 +26,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static PieceCounter _pieceCounter;
 
-        public static bool SpawnFigure(Unit unit, Enums.Piece piece)
+        public static bool SpawnFigure(PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece)
         {
             for (int i = 0; i < 8; ++i)
             {
@@ -151,12 +151,12 @@ namespace YetAnotherAutoChess.Business.GameAssets
             return true;
         }
 
-        public static List<Figure> CopyActiveFigures()      //         trasform to package
+        public static List<PlayerServiceReference.FigurePackage> CopyActiveFigures()
         {
-            List<Figure> copiedUnits = new List<Figure>();
+            List<PlayerServiceReference.FigurePackage> copiedUnits = new List<PlayerServiceReference.FigurePackage>();
             foreach (Figure figure in _activeAllyFigures)
             {
-                //copiedUnits.Add(Instantiate(figure));
+                copiedUnits.Add(figure.ToFigurePackage());
             }
             return copiedUnits;
         }
@@ -366,14 +366,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Figures[row, column] = _selectedFigure;
             AssignFigureToPosition(_selectedFigure, row, column);
-
-            //boardTiles[selectionRow, selectionColumn].ChangeColor(BoardTile.DefaultColor);
         }
 
         private static void AssignFigureToPosition(Figure figure, int row, int column)
         {
             figure.MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
             int previousRow = figure.Position.Row;
+            int previousColumn = figure.Position.Column;
             figure.Position.Row = row;
             figure.Position.Column = column;
             figure.Untargetable = row == -1;
@@ -389,6 +388,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
                     AddToBoard(figure);
                 }
             }
+
+            PlayerServiceReference.FigurePackage figurePackage = figure.ToFigurePackage();
+            figurePackage.OriginalRow = previousRow;
+            figurePackage.OriginalColumn = previousColumn;
+            figurePackage.NewRow = row;
+            figurePackage.NewColumn = column;
+            PlayerClient.MoveUnit(figurePackage);
         }
 
         private static void RemoveFromBoard(Figure figure)

@@ -28,7 +28,8 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Health = 100;
             Pawns = 5;
-            Board.OnMatchEnd += damage => UpdateHealthNET(this.Health - damage);
+            Board.OnMatchEnd += damage => TakeDamage(damage);
+            PlayerClient.RegisterPlayer(ToPlayerPackage());
 
             MatchManager.Instance.OnStateChage += state =>
             {
@@ -98,7 +99,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
             Name = name;
         }
 
-        void UpdateHealthNET(int setHealth)
+        void TakeDamage(int damage)
+        {
+            UpdateHealth(this.Health - damage);
+            PlayerClient.TakeDamage(Name, damage);
+        }
+
+        void UpdateHealth(int setHealth)
         {
             LastMatchIsWon(Health == setHealth ? true : false);
             if (setHealth < 0)
@@ -132,9 +139,17 @@ namespace YetAnotherAutoChess.Business.GameAssets
             }
         }
 
-        public void ConvertToPlayerPackage()
+        public PlayerServiceReference.PlayerPackage ToPlayerPackage()
         {
-
+            PlayerServiceReference.PlayerPackage player = new PlayerServiceReference.PlayerPackage();
+            player.Hp = Health;
+            player.Money = Pawns;
+            player.Username = Name;
+            //player.Password = password                           PASSWORD NEEDS TO BE REMOVED!!!!!!!!!!!!!!
+            player.IP_adress = NetworkInformation.IPAddress;
+            player.Port = NetworkInformation.Port.ToString();   // PORT NEEDS TO BE INTEGER!!!!!!!!!!
+            player.Figures = Board.CopyActiveFigures().ToArray();
+            return player;
         }
 
         public override void Update()
