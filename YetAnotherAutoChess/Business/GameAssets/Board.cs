@@ -34,8 +34,8 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 {
                     Figure figureOnBoard = FigureManager.CreateFigure(unit, piece);
 
-                    if (CheckForUpgrades(figureOnBoard, true).Count != 0)
-                        return true;
+                    //if (CheckForUpgrades(figureOnBoard, true).Count != 0)
+                    //    return true;
 
                     figureOnBoard.Untargetable = true;
                     figureOnBoard.Owner = Owner;
