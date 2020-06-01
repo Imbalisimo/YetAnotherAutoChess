@@ -95,7 +95,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                 }
 
                 Point p = boardTile.GetTileCenter();
-                _selectedFigure.MainViewModel.MoveTo(new System.Windows.Media.Media3D.Point3D(p.X, p.Y, 0));
+                _selectedFigure.MainViewModel.MoveTo(PointToPoint3D(p));
 
                 if (boardTile != _lastTilePassed)
                 {
@@ -104,6 +104,11 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                     boardTile.ChangeColor(_selectColor);
                 }
             }
+        }
+
+        public static System.Windows.Media.Media3D.Point3D PointToPoint3D(Point p)
+        {
+            return new System.Windows.Media.Media3D.Point3D(p.X, 0, p.Y);
         }
 
         public static void OnLeftMouseButtonUp(SceneNode sceneNode)

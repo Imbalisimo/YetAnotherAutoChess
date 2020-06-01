@@ -242,8 +242,8 @@ namespace YetAnotherAutoChess
                                                        originalPosition.M34,
                                                        originalPosition.M41 + (float)point.X,
                                                        originalPosition.M42 + (float)point.Y,
-                                                       originalPosition.M43,
-                                                       originalPosition.M44 + (float)point.Z);
+                                                       originalPosition.M43 - (float)point.Z,
+                                                       originalPosition.M44);
                 }
             }
         }

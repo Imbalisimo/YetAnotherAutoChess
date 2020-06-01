@@ -66,7 +66,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static System.Windows.Media.Media3D.Point3D PointToPoint3D(Point p)
         {
-            return new System.Windows.Media.Media3D.Point3D(p.X, p.Y, 0);
+            return new System.Windows.Media.Media3D.Point3D(p.X, 0, p.Y);
         }
 
         private static void TakeDamage()

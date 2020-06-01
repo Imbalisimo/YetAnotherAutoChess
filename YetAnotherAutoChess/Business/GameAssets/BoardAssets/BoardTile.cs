@@ -21,7 +21,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
             this.Position = Position;
             this.MainViewModel = new MainViewModel
                 ("./Models/Tiles/" + (typeOfTile == 0 ? "BenchTile.fbx" : "Tile.fbx"));
-            this.MainViewModel.MoveTo(new Point3D(Position.X * TileSize, Position.Y * TileSize, 0));
+            this.MainViewModel.MoveTo(new Point3D(Position.Y * TileSize, Position.X * TileSize, 0));
             this.MainViewModel.EnableHitTest(true);
             ChangeColor(BoardTile.DefaultColor);
         }
@@ -42,7 +42,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
 
         public Point GetTileCenter()
         {
-            return new Point((Position.Y - 1) * TileSizeForUnits, (Position.X + 1) * TileSizeForUnits);
+            return new Point(Position.Y * TileSizeForUnits, Position.X * TileSizeForUnits);
         }
 
         public override void Update()
