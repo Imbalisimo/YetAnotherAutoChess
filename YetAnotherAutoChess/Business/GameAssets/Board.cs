@@ -236,6 +236,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Figures = new FigureGraph();
 
+            AllFigures = new List<Figure>();
             _activeAllyFigures = new List<Figure>();
             _activeEnemyFigures = new List<Figure>();
 

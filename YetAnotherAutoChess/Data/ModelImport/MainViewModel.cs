@@ -23,7 +23,7 @@ using OrthographicCamera = HelixToolkit.Wpf.SharpDX.OrthographicCamera;
 
 namespace YetAnotherAutoChess
 {
-    class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private string OpenFileFilter = $"{HelixToolkit.Wpf.SharpDX.Assimp.Importer.SupportedFormatsString}";
         private bool showWireframe = false;

@@ -11,9 +11,9 @@ namespace YetAnotherAutoChess.Business
     {
         public static Unit CreateUnit(string name)
         {
-            Type type = Type.GetType("YetAnotherAutoChess.Data.Units." + name);
+            Type type = Type.GetType("YetAnotherAutoChess.Business.BoardFigureScripts.Units." + name);
             Unit unit = (Unit)Activator.CreateInstance(type);
-            //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Data.Units", name).Unwrap();
+            //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Business.BoardFigureScripts.Units", name).Unwrap();
 
             unit.MainViewModel = new MainViewModel("./Models/Units/" + name + "/model.fbx");
             return unit;

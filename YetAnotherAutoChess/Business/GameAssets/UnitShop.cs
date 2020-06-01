@@ -20,6 +20,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         public static void Initialize(Grid mainGrid)
         {
             shopUI = new ShopUI(new UnitShopButtonsUI(mainGrid));
+            PlaceNewUnitsInShop();
         }
 
         public static void Reroll()

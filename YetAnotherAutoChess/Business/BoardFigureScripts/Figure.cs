@@ -16,6 +16,8 @@ namespace YetAnotherAutoChess.Business
             public int Column;
         }
 
+        public new MainViewModel MainViewModel { get => Unit.MainViewModel; }
+
         public List<Figure> Sacrifices;
 
         public Place Position;
