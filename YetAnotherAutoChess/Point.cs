@@ -23,5 +23,10 @@ namespace YetAnotherAutoChess
             X = x;
             Y = y;
         }
+
+        public System.Windows.Point ToWinPoint()
+        {
+            return new System.Windows.Point(X, Y);
+        }
     }
 }

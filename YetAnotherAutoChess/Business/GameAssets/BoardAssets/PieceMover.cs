@@ -128,6 +128,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                 {
                     Board.MoveFigureToPoisition(_selectedFigure, _selectionRow, _selectionColumn);
                     _lastTilePassed.ChangeColor(BoardTile.DefaultColor);
+                    _selectedFigure = null;
                 }
             }
         }

@@ -45,6 +45,11 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
             return new Point(Position.Y * TileSizeForUnits, Position.X * TileSizeForUnits);
         }
 
+        public System.Windows.Point GetTileScreenPosition()
+        {
+            return EngineCore.View.PointToScreen(Position.ToWinPoint());
+        }
+
         public override void Update()
         {
             

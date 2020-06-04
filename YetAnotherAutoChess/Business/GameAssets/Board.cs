@@ -417,6 +417,11 @@ namespace YetAnotherAutoChess.Business.GameAssets
             return _boardTiles[x, y].GetTileCenter();
         }
 
+        public static System.Windows.Point GetTileScreenPosition(int x, int y)
+        {
+            return _boardTiles[x, y].GetTileScreenPosition();
+        }
+
         private static void SetUpTheTiles()
         {
             for (int row = -1; row < _rows; row++)

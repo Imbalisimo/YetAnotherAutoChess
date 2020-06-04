@@ -82,12 +82,12 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
         public static void Initialize()
         {
             MatchManager.Instance.OnStateChage += BlessAllUnits;
-            Synergies = new List<Synergy>(System.Enum.GetValues(typeof(Enums.Synergy)).Length);
-            //foreach (Enums.Synergy synergy in System.Enum.GetValues(typeof(Enums.Synergy)))
-            //    Synergies.Add(null);
-            FiguresInSynergy = new List<List<Figure>>(System.Enum.GetValues(typeof(Enums.Synergy)).Length);
-            //foreach (Enums.Synergy synergy in System.Enum.GetValues(typeof(Enums.Synergy)))
-            //    FiguresInSynergy.Add(new List<Figure>());
+            Synergies = new List<Synergy>(System.Enum.GetValues(typeof(Enums.Synergy)).Length + 1);
+            foreach (Enums.Synergy synergy in System.Enum.GetValues(typeof(Enums.Synergy)))
+                Synergies.Add(null);
+            FiguresInSynergy = new List<List<Figure>>(System.Enum.GetValues(typeof(Enums.Synergy)).Length + 1);
+            foreach (Enums.Synergy synergy in System.Enum.GetValues(typeof(Enums.Synergy)))
+                FiguresInSynergy.Add(new List<Figure>());
 
             CreateSynergies();
             Synergies.RemoveAll(synergy => synergy == null);
