@@ -114,10 +114,12 @@
     <Compile Include="Business\BoardFigureScripts\Attack.cs" />
     <Compile Include="Business\BoardFigureScripts\Buff.cs" />
     <Compile Include="Business\BoardFigureScripts\Buffs\BuffExtensions.cs" />
+    <Compile Include="Business\BoardFigureScripts\Units\ICloneable.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\EarthBigGolem.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\EarthSmallGolem.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\SynergyPerUnit.cs" />
     <Compile Include="Business\BoardFigureScripts\Units\Thor.cs" />
+    <Compile Include="Business\ModelBuilder.cs" />
     <Compile Include="Business\Pathfinding\Dijkstra.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Bishop.cs" />
     <Compile Include="Business\BoardFigureScripts\Pieces\Knight.cs" />

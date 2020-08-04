@@ -15,8 +15,17 @@ namespace YetAnotherAutoChess.Business
             Unit unit = (Unit)Activator.CreateInstance(type);
             //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Business.BoardFigureScripts.Units", name).Unwrap();
 
-            unit.MainViewModel = new MainViewModel("./Models/Units/" + name + "/model.fbx");
+            unit.MainViewModel = CreateModel(name);
+            //unit.MainViewModel = new MainViewModel("./Models/Units/" + name + "/model.fbx");
             return unit;
+        }
+
+        public static MainViewModel CreateModel(string name)
+        {
+            ModelBuilder builder = new ModelBuilder();
+            UnitModelBuildDirector director = new UnitModelBuildDirector(builder, name);
+            director.Construct();
+            return builder.GetResult();
         }
 
         public static Figure CreateFigure(PlayerServiceReference.BaseUnitPackage unitPackage, Enums.Piece piece)

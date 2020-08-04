@@ -19,8 +19,12 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
         public BoardTile(Point Position, int typeOfTile = 0)
         {
             this.Position = Position;
-            this.MainViewModel = new MainViewModel
-                ("./Models/Tiles/" + (typeOfTile == 0 ? "BenchTile.fbx" : "Tile.fbx"));
+            ModelBuilder builder = new ModelBuilder();
+            
+            TileModelBuildDirector director = new TileModelBuildDirector(builder, typeOfTile == 0 ? Enums.Tile.BenchTile : Enums.Tile.Board);
+            director.Construct();
+            this.MainViewModel = builder.GetResult();
+                //new MainViewModel("./Models/Tiles/" + (typeOfTile == 0 ? "BenchTile.fbx" : "Tile.fbx"));
             this.MainViewModel.MoveTo(new Point3D(Position.Y * TileSize, Position.X * TileSize, 0));
             this.MainViewModel.EnableHitTest(true);
             ChangeColor(BoardTile.DefaultColor);

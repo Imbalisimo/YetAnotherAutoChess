@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace YetAnotherAutoChess.Enums
 {
+    public enum Tile
+    {
+        Board,
+        BenchTile
+    }
+
     public enum GameStates
     {
         Menu,
