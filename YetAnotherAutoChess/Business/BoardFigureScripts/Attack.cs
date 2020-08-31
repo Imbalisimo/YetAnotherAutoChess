@@ -60,7 +60,7 @@ namespace YetAnotherAutoChess.Business
                 case TargetingSystem.HighestEnemyDps:
                 case TargetingSystem.LowestAllyHp:
                 default:
-                    _target = Dijkstra.EnemyInsideRange(_source, _range, -1, -1, _targeting);
+                    _target = Pathfinding.PathFinder.Instance.EnemyInsideRange(_source, _range, -1, -1, _targeting);
                     break;
             }
             if (_projectileSpeed == 0)

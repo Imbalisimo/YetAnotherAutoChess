@@ -151,6 +151,8 @@
     <Compile Include="Business\GameAssets\PieceCounter.cs" />
     <Compile Include="Business\GameAssets\Player.cs" />
     <Compile Include="Business\GameAssets\UnitShop.cs" />
+    <Compile Include="Business\Pathfinding\IPathfindable.cs" />
+    <Compile Include="Business\Pathfinding\PathFinder.cs" />
     <Compile Include="Calculators.cs" />
     <Compile Include="Connected Services\PlayerServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>

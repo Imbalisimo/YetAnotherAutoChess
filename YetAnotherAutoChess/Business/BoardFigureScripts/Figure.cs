@@ -90,7 +90,7 @@ namespace YetAnotherAutoChess.Business
             if (Piece.PieceType == Enums.Piece.Knight && _startOfMatch)
             {
                 _startOfMatch = false;
-                Point destination = Dijkstra.KnightJumpOnStart(this);
+                Point destination = Pathfinding.PathFinder.Instance.KnightJumpOnStart(this);
                 MoveTo((int)destination.X, (int)destination.Y);
                 return;
             }
@@ -108,7 +108,7 @@ namespace YetAnotherAutoChess.Business
                 CastAbility();
                 return;
             }
-            if (_target != null && !_target.Untargetable && Dijkstra.IsEnemyInRange(this, _target))
+            if (_target != null && !_target.Untargetable && Pathfinding.PathFinder.Instance.IsEnemyInRange(this, _target))
             {
                 if (Unit.Stats.Disarmed <= 0)
                 {
@@ -144,7 +144,7 @@ namespace YetAnotherAutoChess.Business
 
         private bool TakeAStep(int range)
         {
-            Figure nextTarget = Dijkstra.EnemyInsideRange(this, range);
+            Figure nextTarget = Pathfinding.PathFinder.Instance.EnemyInsideRange(this, range);
             if (nextTarget == null)
             {
                 ApproachAnEnemy();
@@ -161,9 +161,9 @@ namespace YetAnotherAutoChess.Business
         {
             Point nextPosition;
             if (Piece.PieceType != Enums.Piece.Knight)
-                nextPosition = Dijkstra.FindNextStep(this);
+                nextPosition = Pathfinding.PathFinder.Instance.FindNextStep(this);
             else
-                nextPosition = Dijkstra.FindNextStep(this, true);
+                nextPosition = Pathfinding.PathFinder.Instance.FindNextStep(this, true);
             if (nextPosition.X < 0 || nextPosition.Y < 0)
                 return;
             MoveTo(nextPosition.X, nextPosition.Y);

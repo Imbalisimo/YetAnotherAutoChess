@@ -240,7 +240,8 @@ namespace YetAnotherAutoChess.Business.GameAssets
             _activeAllyFigures = new List<Figure>();
             _activeEnemyFigures = new List<Figure>();
 
-            Dijkstra.SetGraph(Figures);
+            Pathfinding.PathFinder pathFindingAlgorithm = new Pathfinding.PathFinder(new Dijkstra(8, 8, 8));
+            pathFindingAlgorithm.SetGraph(Figures);
 
             MatchManager.Instance.OnStateChage += matchState =>
             {

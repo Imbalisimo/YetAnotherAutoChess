@@ -4,32 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YetAnotherAutoChess.Business.GameAssets.BoardAssets;
+using YetAnotherAutoChess.Business.Pathfinding;
 
 namespace YetAnotherAutoChess.Business
 {
-    public static class Dijkstra
+    public class Dijkstra : IPathfindable
     {
-        private static int _rows = 8; // vertical size of the map
-        private static int _columns = 8; // horizontal size size of the map
+        private int _rows = 8; // vertical size of the map
+        private int _columns = 8; // horizontal size size of the map
 
-        private static FigureGraph _graph;
+        private FigureGraph _graph;
 
-        private static int _possibleDir = 8;
-        private static int[] dx = { -1, -1, 1, 1, 0, -1, 0, 1 };
-        private static int[] dy = { -1, 1, 1, -1, -1, 0, 1, 0 };
+        private int _possibleDir = 8;
+        private int[] dx = { -1, -1, 1, 1, 0, -1, 0, 1 };
+        private int[] dy = { -1, 1, 1, -1, -1, 0, 1, 0 };
 
-        public static void SetGraph(FigureGraph graph)
+        public Dijkstra(int rows, int columns, int possibleDirections)
+        {
+            _rows = rows;
+            _columns = columns;
+            _possibleDir = possibleDirections;
+            switch(possibleDirections)
+            {
+                case 8:
+                    dx = new int[] { -1, -1, 1, 1, 0, -1, 0, 1 };
+                    dy = new int[] { -1, 1, 1, -1, -1, 0, 1, 0 };
+                    break;
+                case 6:
+                    dx = new int[] { -1, -1, 1, 1, -1, 1 };
+                    dy = new int[] { -1, 1, 1, -1, 0, 0 };
+                    break;
+                case 4:
+                    dx = new int[] { 0, -1, 0, 1 };
+                    dy = new int[] { -1, 0, 1, 0 };
+                    break;
+            }
+        }
+
+        public void SetGraph(FigureGraph graph)
         {
             _graph = graph;
         }
 
-        public static void ChangeRowAndColumnNumber(int rows, int columns)
+        public void ChangeRowAndColumnNumber(int rows, int columns)
         {
             _rows = rows;
             _columns = columns;
         }
 
-        private static Point MinimumDistance(int[,] distance, bool[,] shortestPathTreeSet)
+        private Point MinimumDistance(int[,] distance, bool[,] shortestPathTreeSet)
         {
             int min = int.MaxValue, min_indexRow = -1, min_indexColumn = -1;
             Point minIndex = new Point();
@@ -52,7 +75,7 @@ namespace YetAnotherAutoChess.Business
             return minIndex;
         }
 
-        public static bool IsEnemyInRange(Figure source, Figure target)
+        public bool IsEnemyInRange(Figure source, Figure target)
         {
             List<Point> range = GetRange(source.Range, source.Position.Row, source.Position.Column);
             foreach (Point point in range)
@@ -61,7 +84,7 @@ namespace YetAnotherAutoChess.Business
             return false;
         }
 
-        public static List<Point> GetRange(int range, int row, int column)
+        public List<Point> GetRange(int range, int row, int column)
         {
             List<Point> tilesInRange = new List<Point>();
             for (int distance = 1; distance <= range; ++distance)
@@ -84,7 +107,7 @@ namespace YetAnotherAutoChess.Business
             return tilesInRange;
         }
 
-        public static Figure EnemyInsideRange(Figure source, int range, int targetRow = -1, int targetColumn = -1,
+        public Figure EnemyInsideRange(Figure source, int range, int targetRow = -1, int targetColumn = -1,
             Enums.TargetingSystem targetingSystem = Enums.TargetingSystem.ClosestEnemy)
         {
             int currentRow = targetRow == -1 ? source.Position.Row : targetRow;
@@ -133,7 +156,7 @@ namespace YetAnotherAutoChess.Business
             return target;
         }
 
-        public static Figure EnemyInsideRangeOptimised(Figure source, int sourceRange, int targetRow = -1, int targetColumn = -1)
+        public Figure EnemyInsideRangeOptimised(Figure source, int sourceRange, int targetRow = -1, int targetColumn = -1)
         {
             int currentRow = targetRow == -1 ? source.Position.Row : targetRow;
             int currentColumn = targetColumn == -1 ? source.Position.Column : targetColumn;
@@ -175,7 +198,7 @@ namespace YetAnotherAutoChess.Business
                 return null;
         }
 
-        public static Point FindNextStep(Figure source, bool isKnight = false)
+        public Point FindNextStep(Figure source, bool isKnight = false)
         {
             int[,] distance = new int[_rows, _columns];
             bool[,] shortestPathTreeSet = new bool[_rows, _columns];
@@ -219,7 +242,7 @@ namespace YetAnotherAutoChess.Business
                 return MakePath(source, u, distance, true)[0];
         }
 
-        private static List<Point> MakePath(Figure source, Point goal, int[,] distance, bool isknight = false)
+        private List<Point> MakePath(Figure source, Point goal, int[,] distance, bool isknight = false)
         {
             int x = goal.X, y = goal.Y;
             List<Point> path = new List<Point>();
@@ -259,7 +282,7 @@ namespace YetAnotherAutoChess.Business
             return path;
         }
 
-        public static Point KnightJumpOnStart(Figure source)
+        public Point KnightJumpOnStart(Figure source)
         {
             int row = 0;
             int column = source.Position.Column;

@@ -92,7 +92,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
 
         public static void SpawnFigure(Figure figure, Figure encirclement)
         {
-            Point p = Dijkstra.FindNextStep(encirclement);
+            Point p = Pathfinding.PathFinder.Instance.FindNextStep(encirclement);
             Board.ImpaleToPosition(encirclement, p.X, p.Y);
             figure.Position.Column = (int)p.X;
             figure.Position.Row = (int)p.Y;

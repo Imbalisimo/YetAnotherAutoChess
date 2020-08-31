@@ -11,18 +11,19 @@ namespace YetAnotherAutoChess.Business
         private List<Buff> _queue;
         private float _shieldAllTogether;
 
-        void AddShield(Buff buff, Unit.Properties properties)
-        {
-            _shieldAllTogether = properties.Shield * ((100 + buff.BuffStats.ShieldPercentage) / 100);
-            _shieldAllTogether += buff.BuffStats.ShieldFlat;
-        }
-
         public void Enqueue(Buff buff, Unit.Properties properties)
         {
             AddShield(buff, properties);
             _queue.Add(buff);
             //            Queue.Sort(buff.);
         }
+
+        private void AddShield(Buff buff, Unit.Properties properties)
+        {
+            _shieldAllTogether = properties.Shield * ((100 + buff.BuffStats.ShieldPercentage) / 100);
+            _shieldAllTogether += buff.BuffStats.ShieldFlat;
+        }
+
         public float Dequeue(Buff buff, float currentShield)
         {
             if (currentShield == _shieldAllTogether)
