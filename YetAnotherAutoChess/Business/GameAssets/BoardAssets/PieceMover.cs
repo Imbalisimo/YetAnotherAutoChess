@@ -95,7 +95,7 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                 }
 
                 Point p = boardTile.GetTileCenter();
-                _selectedFigure.MainViewModel.MoveTo(PointToPoint3D(p));
+                _selectedFigure.MoveGraphicsToPosition(PointToPoint3D(p));
 
                 if (boardTile != _lastTilePassed)
                 {

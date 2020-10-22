@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YetAnotherAutoChess.Business.BoardFigureScripts.Pieces;
+using YetAnotherAutoChess.Presentation.FigureUI;
 
 namespace YetAnotherAutoChess.Business
 {
@@ -40,11 +41,10 @@ namespace YetAnotherAutoChess.Business
 
             unit.MainViewModel.SetActive(true);
 
-            //GameObject unitUI = Resources.Load("FigureUI", typeof(GameObject)) as GameObject;
-            //GameObject UI = Instantiate(unitUI, Vector3.zero, Quaternion.identity) as GameObject;
+            IFigureUI figureUI = new FigureUIManager();
 
             figure.Unit = unit;
-            //figure.FigureUIManager = UI;
+            figure.FigureUI = figureUI;
             figure.Piece = MakePiece(piece);
             figure.Cost = Calculators.CostCalculator.CalculateFinalCost(unit, piece);
 
