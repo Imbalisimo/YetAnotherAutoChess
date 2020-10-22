@@ -15,11 +15,11 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
             this.Height = 17;
             Move(positionX + 40, positionY);
             this.Source = new System.Windows.Media.Imaging.
-                    BitmapImage(new Uri("./Images/UIstuff/Stars/bronze.png", UriKind.Relative));
+                    BitmapImage(new Uri("/Images/UIstuff/Stars/bronze.png", UriKind.Relative));
         }
         public void Move(double x, double y)
         {
-            this.Margin = new System.Windows.Thickness(x + 40, y, 0, 0);
+            this.Margin = new System.Windows.Thickness((x + 40)/4, 0, 0, y/4);
         }
 
         public void SetMana(int manaToSubtract)

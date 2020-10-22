@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Media3D;
 using YetAnotherAutoChess.Business.GameAssets.BoardAssets;
+using YetAnotherAutoChess.Presentation;
+using YetAnotherAutoChess.Presentation.FigureUI;
 
 namespace YetAnotherAutoChess
 {
@@ -13,6 +15,7 @@ namespace YetAnotherAutoChess
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Grid mainGridCS;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,6 +30,7 @@ namespace YetAnotherAutoChess
 
         private void InitializeAssets()
         {
+            mainGridCS = mainGrid;
             PlayerClient.Start();
             Business.GameAssets.MatchManager matchManager = new Business.GameAssets.MatchManager();
             DPSmanager dpsManager = new DPSmanager();
@@ -37,6 +41,8 @@ namespace YetAnotherAutoChess
             TextGrid.Children.Add(matchManager.Text);
             StatusBarInfo statusBarInfo = new StatusBarInfo();
             mainGrid.Children.Add(statusBarInfo.canvas);
+            MainGrid.setMainGrid(mainGrid);
+            MainCanvas.setMainCanvas(mainCanvas);
         }
 
         private delegate void MouseAction(SceneNode sceneNode);

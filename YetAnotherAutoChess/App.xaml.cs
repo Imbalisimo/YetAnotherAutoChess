@@ -14,6 +14,9 @@ namespace YetAnotherAutoChess
     /// </summary>
     public partial class App : Application
     {
+        public static int currentSizeX;
+        public static int currentSizeY;
+
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
 
         {

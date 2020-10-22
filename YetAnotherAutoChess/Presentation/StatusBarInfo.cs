@@ -19,9 +19,9 @@ namespace YetAnotherAutoChess
         {
             canvas = (Application.Current.Resources["unitStatusBar"] as Canvas);
             //setCanvasPosition(PositionLeft_To_Right, PositionBottom_To_Top);
-            SetChildren();
-            SetHealth(100);
-            SetMana(100);
+            //SetChildren();
+            //SetHealth(100);
+            //SetMana(100);
         }
         public void SetHealth(int healthBar = 100)
         {

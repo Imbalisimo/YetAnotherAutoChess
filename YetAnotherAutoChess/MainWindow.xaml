@@ -19,9 +19,8 @@
             ShowViewCube="False">
         </hx:Viewport3DX>
         <Grid Name="TextGrid"></Grid>
-        <Grid x:Name="mainGrid">
-            <Canvas Name="mainCanvas"></Canvas>
+        <Grid x:Name="mainGrid" >
+            <Canvas Name="mainCanvas" SizeChanged="Canvas_SizeChanged"></Canvas>
         </Grid>
-        <ProgressBar HorizontalAlignment="Left" Height="37" Margin="96,156,0,0" VerticalAlignment="Top" Width="206" Value="120" />
     </Grid>
 </Window>

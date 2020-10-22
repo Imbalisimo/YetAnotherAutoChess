@@ -10,7 +10,7 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
     {
         public FigureUIManager()
         {
-            figureUIBars = new FigureUIBars(0,0);
+            figureUIBars = new FigureUIBars(15,20);
             rankImage = new RankImage(0, 0);
         }
 
