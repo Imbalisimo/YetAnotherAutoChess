@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using YetAnotherAutoChess.Business.EngineCore;
 using YetAnotherAutoChess.Business.GameAssets;
+using YetAnotherAutoChess.Presentation.FigureUI;
 
 namespace YetAnotherAutoChess.Business
 {
@@ -26,7 +28,7 @@ namespace YetAnotherAutoChess.Business
         public ShieldPriorityQueue shieldPriorityQueue = new ShieldPriorityQueue();
         public Unit Unit;
         public Piece Piece;
-        //public FigureUIManager FigureUIManager;
+        public IFigureUI FigureUI;
         public int Cost;
 
         public Enums.Synergy Mythology { get => 
@@ -50,7 +52,7 @@ namespace YetAnotherAutoChess.Business
 
         public void CarryEnemyColors()
         {
-           // FigureUIManager.CarryEnemyColors();
+            FigureUI.CarryEnemyColors();
         }
 
         public delegate void Sell(Figure figure);
@@ -68,7 +70,7 @@ namespace YetAnotherAutoChess.Business
         public override void Update()
         {
             AttackOrMove();
-            UpdateHealthAndMana();
+            //UpdateHealthAndMana();
         }
 
         public void UpdateHealthAndMana()
@@ -132,6 +134,7 @@ namespace YetAnotherAutoChess.Business
             Attack attack = Unit.Ability();
             attack.AddSource(this);
             this.Unit.CurrentMana = 0;
+            FigureUI.SetMana(0);
         }
 
         private void Attack()
@@ -177,6 +180,17 @@ namespace YetAnotherAutoChess.Business
             Position.Row = r;
             Position.Column = c;
         }
+        private void MoveUIToFigurePosition(System.Windows.Point point)
+        {
+            FigureUI.Move(point.X, point.Y);
+        }
+
+        public void MoveGraphicsToPosition(System.Windows.Media.Media3D.Point3D point3D)
+        {
+            MainViewModel.MoveTo(point3D);
+            System.Windows.Point point = View.PointToScreen(new System.Windows.Point((int)point3D.X, (int)point3D.Z));
+            MoveUIToFigurePosition(point);
+        }
 
         public delegate void Move(Figure sender, int nextRow, int nextColumn);
         public event Move OnMove;
@@ -212,6 +226,7 @@ namespace YetAnotherAutoChess.Business
             else
             {
                 Unit.CurrentHealth -= damageDealt;
+                FigureUI.SetHealth((int)(Unit.CurrentHealth/Unit.Stats.Health)*100);
             }
 
             if (Unit.CurrentHealth <= 0)
@@ -317,9 +332,15 @@ namespace YetAnotherAutoChess.Business
         public event Death OnDeath;
         public void Die()
         {
-            MainViewModel.SetActive(false);
             Untargetable = true;
+            SetGraphicActiveFalse();
             OnDeath(this);
+        }
+
+        public void SetGraphicActiveFalse()
+        {
+            MainViewModel.SetActive(false);
+            FigureUI.SetActive(false);
         }
 
         private Place _matchStartingPosition;
@@ -333,6 +354,9 @@ namespace YetAnotherAutoChess.Business
             MoveTo(_matchStartingPosition.Row, _matchStartingPosition.Column);
             Unit.CurrentHealth = Unit.Stats.Health;
             Unit.CurrentMana = Unit.Stats.StartingMana;
+            FigureUI.SetActive(true);
+            FigureUI.SetHealth(100);
+            FigureUI.SetMana(100);
             //FigureUIManager.EnableToggle();
         }
 
@@ -361,11 +385,13 @@ namespace YetAnotherAutoChess.Business
             if (Star == 2)
             {
                 Unit.MakeMeAThreeStar();
+                FigureUI.UpgradeToThreeStar();
                 //FigureUIManager.PromoteToThreeStar();
             }
             if (Star == 1)
             {
                 Unit.MakeMeATwoStar();
+                FigureUI.UpgradeToTwoStar();
                 //FigureUIManager.PromoteToTwoStar();
             }
         }

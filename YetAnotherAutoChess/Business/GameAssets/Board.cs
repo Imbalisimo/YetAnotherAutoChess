@@ -61,7 +61,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         {
             Figures[sender.Position.Row, sender.Position.Column] = null;
             Figures[nextRow, nextColumn] = sender;
-            sender.MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(nextRow, nextColumn)));
+            sender.MoveGraphicsToPosition(PointToPoint3D(GetTileCenter(nextRow, nextColumn)));
         }
 
         private static System.Windows.Media.Media3D.Point3D PointToPoint3D(Point p)
@@ -116,7 +116,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         {
             Figures[figure.Position.Row, figure.Position.Column] = null;
             figure.Untargetable = true;
-            figure.MainViewModel.SetActive(false);
+            figure.SetGraphicActiveFalse();
             if (_activeAllyFigures.Contains(figure))
                 RemoveFromBoard(figure);
 
@@ -169,7 +169,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 figure.Position.Row = 7 - figure.Position.Row;
                 figure.Position.Column = 7 - figure.Position.Column;
                 Figures[figure.Position.Row, figure.Position.Column] = figure;
-                figure.MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(figure.Position.Row, figure.Position.Column)));
+                figure.MoveGraphicsToPosition(PointToPoint3D(GetTileCenter(figure.Position.Row, figure.Position.Column)));
                 _activeEnemyFigures.Add(figure);
                 figure.OnDeath += f =>
                 {
@@ -212,7 +212,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
         private static void SpawnChessFigure(int index, int row, int column)
         {
             Figures[row, column] = AllFigures[index];
-            AllFigures[index].MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
+            AllFigures[index].MoveGraphicsToPosition(PointToPoint3D(GetTileCenter(row, column)));
             Figures[row, column].Position.Row = row;
             Figures[row, column].Position.Column = column;
             if (row != -1)
@@ -359,7 +359,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
             if (Figures[row, column] != null)
             {
                 Figure figureToSwap = Figures[row, column];
-                figureToSwap.MainViewModel.MoveTo(
+                figureToSwap.MoveGraphicsToPosition(
                     PointToPoint3D(GetTileCenter(_selectedFigure.Position.Row, _selectedFigure.Position.Column)));
                 Figures[_selectedFigure.Position.Row, _selectedFigure.Position.Column] = figureToSwap;
 
@@ -372,7 +372,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static void AssignFigureToPosition(Figure figure, int row, int column)
         {
-            figure.MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
+            figure.MoveGraphicsToPosition(PointToPoint3D(GetTileCenter(row, column)));
             int previousRow = figure.Position.Row;
             int previousColumn = figure.Position.Column;
             figure.Position.Row = row;

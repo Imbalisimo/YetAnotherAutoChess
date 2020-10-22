@@ -175,6 +175,12 @@
     <Compile Include="PlayerClient.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Presentation\FigureUIManager.cs" />
+    <Compile Include="Presentation\FigureUI\FigureUIBars.cs" />
+    <Compile Include="Presentation\FigureUI\FigureUIManager.cs" />
+    <Compile Include="Presentation\FigureUI\HPBar.cs" />
+    <Compile Include="Presentation\FigureUI\IFigureUI.cs" />
+    <Compile Include="Presentation\FigureUI\ManaBar.cs" />
+    <Compile Include="Presentation\FigureUI\RankImage.cs" />
     <Compile Include="Presentation\Shop\DefaultPieceSelector.cs" />
     <Compile Include="Presentation\PlayersUI.cs" />
     <Compile Include="Presentation\Shop\ShopUI.cs" />
