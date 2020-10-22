@@ -14,6 +14,7 @@ namespace YetAnotherAutoChess
         private static Enums.Piece _defaultPiece;
         public static void Initialize(List<Button> buttons)
         {
+            _defaultPiece = Enums.Piece.none;
             foreach (Button button in buttons)
             {
                 button.Click += DefaultPieceClicked;

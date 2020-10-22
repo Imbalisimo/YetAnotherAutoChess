@@ -22,7 +22,7 @@ namespace YetAnotherAutoChess
         private string absolutePath;
         private Button LockButton;
 
-        public delegate void UnitBuyAttempt(Grid grid, Button button, Unit unit, Enums.Piece piece);
+        public delegate void UnitBuyAttempt(Grid grid, Button button, PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece);
         public event UnitBuyAttempt OnUnitBuyAttempt;
 
         public delegate void onRerollAttempt(Button button);
@@ -136,7 +136,7 @@ namespace YetAnotherAutoChess
 
         private void setSources(Button parentButton,Grid grid)
         {
-            int counter = 0;
+            int counter = 1;
             foreach (UIElement child in grid.Children)
             {
                 if (child is Button b)
@@ -144,13 +144,12 @@ namespace YetAnotherAutoChess
                     Image i = b.Content as Image;
                     Uri uri = new Uri(absolutePath + "/PiecesV2/" + counter.ToString() + ".png", UriKind.Absolute);
                     i.Source = new System.Windows.Media.Imaging.BitmapImage(uri);
-                    counter++;
                     b.DataContext = parentButton.DataContext;
-                    b.Click += (o, e) => { UnitWantsToBeBought(grid, parentButton, (Unit)parentButton.DataContext, (Enums.Piece)counter + 1); };
+                    b.Click += (o, e) => { UnitWantsToBeBought(grid, parentButton, (PlayerServiceReference.BaseUnitPackage)parentButton.DataContext, (Enums.Piece)counter++); };
                 }
             }
         }
-        public void UnitWantsToBeBought(Grid grid, Button button, Unit unit, Enums.Piece piece)
+        public void UnitWantsToBeBought(Grid grid, Button button, PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece)
         {
             OnUnitBuyAttempt(grid,button, unit, piece);
         }

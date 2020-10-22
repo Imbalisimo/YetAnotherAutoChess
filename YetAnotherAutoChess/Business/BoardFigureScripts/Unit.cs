@@ -21,8 +21,8 @@ namespace YetAnotherAutoChess.Business
         public float CurrentMana;
         public int Star;
 
-        internal abstract Attack AutoAttack();
-        internal abstract Attack Ability();
+        public abstract Attack AutoAttack();
+        public abstract Attack Ability();
 
         public abstract string GetAbilityDescription();
 
@@ -64,7 +64,7 @@ namespace YetAnotherAutoChess.Business
             public byte IsInvounrable;
             public byte HasDamageReturn;
 
-            public List<Enums.Synergy> Synergies;
+            public Enums.Synergy Synergies;
 
             public List<Buff> AttackCarriedBuffs;
             public List<Buff> SpellCarriedBuffs;
@@ -73,6 +73,16 @@ namespace YetAnotherAutoChess.Business
             public event MaxHpIncrease OnMaxHpIncrease;
             public delegate void MaxManaIncrease(float health);
             public event MaxManaIncrease OnMaxManaIncrease;
+        }
+
+        public string Name { get => GetType().Name; }
+
+        public PlayerServiceReference.BaseUnitPackage ToUnitPackage()
+        {
+            PlayerServiceReference.BaseUnitPackage unit = new PlayerServiceReference.BaseUnitPackage();
+            unit.Name = Name;
+            unit.Cost = Cost;
+            return unit;
         }
     }
 }

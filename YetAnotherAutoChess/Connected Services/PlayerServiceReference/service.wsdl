@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PlayerService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/AutoChessPlayerLibrary" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPlayerService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestRandomUnitsFromPool_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestRandomUnitsFromPool" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RequestRandomUnitsFromPool_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestRandomUnitsFromPoolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MoveUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:MoveUnit" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_MoveUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_ReturnUnitToPool_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnUnitToPool" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_ReturnUnitToPool_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnUnitToPoolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RegisterPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_RegisterPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetOpponentsUnits_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpponentsUnits" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_GetOpponentsUnits_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpponentsUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_TakeDamage_InputMessage">
+    <wsdl:part name="parameters" element="tns:TakeDamage" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerService_TakeDamage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TakeDamageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPlayerService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/GetData" message="tns:IPlayerService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/GetDataResponse" message="tns:IPlayerService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/GetDataUsingDataContract" message="tns:IPlayerService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/GetDataUsingDataContractResponse" message="tns:IPlayerService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestRandomUnitsFromPool">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/RequestRandomUnitsFromPool" message="tns:IPlayerService_RequestRandomUnitsFromPool_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/RequestRandomUnitsFromPoolResponse" message="tns:IPlayerService_RequestRandomUnitsFromPool_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/MoveUnit" message="tns:IPlayerService_MoveUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/MoveUnitResponse" message="tns:IPlayerService_MoveUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnUnitToPool">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/ReturnUnitToPool" message="tns:IPlayerService_ReturnUnitToPool_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/ReturnUnitToPoolResponse" message="tns:IPlayerService_ReturnUnitToPool_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/RegisterPlayer" message="tns:IPlayerService_RegisterPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/RegisterPlayerResponse" message="tns:IPlayerService_RegisterPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpponentsUnits">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/GetOpponentsUnits" message="tns:IPlayerService_GetOpponentsUnits_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/GetOpponentsUnitsResponse" message="tns:IPlayerService_GetOpponentsUnits_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeDamage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerService/TakeDamage" message="tns:IPlayerService_TakeDamage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerService/TakeDamageResponse" message="tns:IPlayerService_TakeDamage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPlayerService" type="tns:IPlayerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestRandomUnitsFromPool">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/RequestRandomUnitsFromPool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveUnit">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/MoveUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnUnitToPool">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/ReturnUnitToPool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterPlayer">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/RegisterPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpponentsUnits">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/GetOpponentsUnits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TakeDamage">
+      <soap:operation soapAction="http://tempuri.org/IPlayerService/TakeDamage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PlayerService">
+    <wsdl:port name="BasicHttpBinding_IPlayerService" binding="tns:BasicHttpBinding_IPlayerService">
+      <soap:address location="http://localhost:8733/AutoChessPlayerLibrary/PlayerService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -11,12 +11,27 @@ namespace YetAnotherAutoChess.Business
     {
         public static Unit CreateUnit(string name)
         {
-            Type type = Type.GetType("YetAnotherAutoChess.Data.Units." + name);
+            Type type = Type.GetType("YetAnotherAutoChess.Business.BoardFigureScripts.Units." + name);
             Unit unit = (Unit)Activator.CreateInstance(type);
-            //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Data.Units", name).Unwrap();
+            //Unit unit = (Unit)Activator.CreateInstance("YetAnotherAutoChess.Business.BoardFigureScripts.Units", name).Unwrap();
 
-            unit.MainViewModel = new MainViewModel("./Units/" + name + "model.fbx");
+            unit.MainViewModel = CreateModel(name);
+            //unit.MainViewModel = new MainViewModel("./Models/Units/" + name + "/model.fbx");
             return unit;
+        }
+
+        public static MainViewModel CreateModel(string name)
+        {
+            ModelBuilder builder = new ModelBuilder();
+            UnitModelBuildDirector director = new UnitModelBuildDirector(builder, name);
+            director.Construct();
+            return builder.GetResult();
+        }
+
+        public static Figure CreateFigure(PlayerServiceReference.BaseUnitPackage unitPackage, Enums.Piece piece)
+        {
+            Unit unit = CreateUnit(unitPackage.Name);
+            return CreateFigure(unit, piece);
         }
 
         public static Figure CreateFigure(Unit unit, Enums.Piece piece)
@@ -55,14 +70,25 @@ namespace YetAnotherAutoChess.Business
             }
         }
 
-        public static void Disassemble(Figure figure)
+        public static Figure CreateFigureFromPackage(PlayerServiceReference.FigurePackage figurePackage)
         {
+            Unit unit = CreateUnit(figurePackage.Name);
+            Enums.Piece piece = (Enums.Piece)Enum.Parse(typeof(Enums.Piece), figurePackage.Piece);
+            Figure figure = CreateFigure(unit, piece);
+            figure.ApplyFigurePackageProperties(figurePackage);
+            return figure;
+        }
+
+        public static List<PlayerServiceReference.BaseUnitPackage> Disassemble(Figure figure)
+        {
+            List<PlayerServiceReference.BaseUnitPackage> units = new List<PlayerServiceReference.BaseUnitPackage>();
             foreach (Figure sacrifice in figure.Sacrifices)
             {
-                Disassemble(sacrifice);
+                units.AddRange(Disassemble(sacrifice));
             }
 
             Unit unit = figure.Unit;
+            units.Add(unit.ToUnitPackage());
             //GameObject UI = figure.FigureUIManager;
 
             figure.Unit.Destroy();
@@ -70,7 +96,8 @@ namespace YetAnotherAutoChess.Business
 
             figure.Destroy();
             //UI.Destroy();
-            
+
+            return units;
         }
     }
 }

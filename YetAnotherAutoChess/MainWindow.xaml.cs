@@ -27,6 +27,7 @@ namespace YetAnotherAutoChess
 
         private void InitializeAssets()
         {
+            PlayerClient.Start();
             Business.GameAssets.MatchManager matchManager = new Business.GameAssets.MatchManager();
             DPSmanager dpsManager = new DPSmanager();
             Business.GameAssets.Board.Initialize();
@@ -44,23 +45,28 @@ namespace YetAnotherAutoChess
         {
             view.AddHandler(mouseEvent, new RoutedEventHandler((s, e) =>
             {
-                var arg = e as MouseDown3DEventArgs;
-
+                var arg = e as Mouse3DEventArgs;
                 if (arg == null)
                     return;
 
-                if (arg.HitTestResult == null)
-                {
+                var hits = view.FindHits(arg.Position.ToVector2());
+                if (hits == null)
                     return;
-                }
-                if (arg.HitTestResult.ModelHit is SceneNode node && node.Tag is AttachedNodeViewModel vm)
-                {
-                    vm.Selected = !vm.Selected;
-                    Action(node);
-                }
+
+                foreach(var hit in hits)
+                    if (hit.ModelHit is SceneNode node && node.Tag is AttachedNodeViewModel vm)
+                    {
+                        vm.Selected = !vm.Selected;
+                        Action(node);
+                    }
             }));
         }
 
+        protected override void OnClosed(System.EventArgs e)
+        {
+            PlayerClient.Close();
+            base.OnClosed(e);
+        }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
 

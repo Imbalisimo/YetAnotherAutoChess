@@ -39,5 +39,10 @@ namespace YetAnotherAutoChess.Business.EngineCore
             element3DPresenter.Content = model.GroupModel;
             _view.Items.Add(element3DPresenter);
         }
+
+        public static System.Windows.Point PointToScreen(System.Windows.Point p)
+        {
+            return _view.PointToScreen(p);
+        }
     }
 }

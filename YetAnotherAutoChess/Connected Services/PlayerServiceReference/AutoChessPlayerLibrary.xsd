@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AutoChessPlayerLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AutoChessPlayerLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+  <xs:complexType name="ArrayOfBaseUnitPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaseUnitPackage" nillable="true" type="tns:BaseUnitPackage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBaseUnitPackage" nillable="true" type="tns:ArrayOfBaseUnitPackage" />
+  <xs:complexType name="BaseUnitPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cost" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseUnitPackage" nillable="true" type="tns:BaseUnitPackage" />
+  <xs:complexType name="FigurePackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NewColumn" type="xs:int" />
+      <xs:element minOccurs="0" name="NewRow" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginalColumn" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginalRow" type="xs:int" />
+      <xs:element minOccurs="0" name="Piece" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PieceToggled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Star" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FigurePackage" nillable="true" type="tns:FigurePackage" />
+  <xs:complexType name="PlayerPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Figures" nillable="true" type="tns:ArrayOfFigurePackage" />
+      <xs:element minOccurs="0" name="Hp" type="xs:int" />
+      <xs:element minOccurs="0" name="IP_adress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Money" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Port" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerPackage" nillable="true" type="tns:PlayerPackage" />
+  <xs:complexType name="ArrayOfFigurePackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FigurePackage" nillable="true" type="tns:FigurePackage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFigurePackage" nillable="true" type="tns:ArrayOfFigurePackage" />
+</xs:schema>

@@ -26,7 +26,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static PieceCounter _pieceCounter;
 
-        public static bool SpawnFigure(Unit unit, Enums.Piece piece)
+        public static bool SpawnFigure(PlayerServiceReference.BaseUnitPackage unit, Enums.Piece piece)
         {
             for (int i = 0; i < 8; ++i)
             {
@@ -34,8 +34,8 @@ namespace YetAnotherAutoChess.Business.GameAssets
                 {
                     Figure figureOnBoard = FigureManager.CreateFigure(unit, piece);
 
-                    if (CheckForUpgrades(figureOnBoard, true).Count != 0)
-                        return true;
+                    //if (CheckForUpgrades(figureOnBoard, true).Count != 0)
+                    //    return true;
 
                     figureOnBoard.Untargetable = true;
                     figureOnBoard.Owner = Owner;
@@ -66,7 +66,7 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static System.Windows.Media.Media3D.Point3D PointToPoint3D(Point p)
         {
-            return new System.Windows.Media.Media3D.Point3D(p.X, p.Y, 0);
+            return new System.Windows.Media.Media3D.Point3D(p.X, 0, p.Y);
         }
 
         private static void TakeDamage()
@@ -151,12 +151,12 @@ namespace YetAnotherAutoChess.Business.GameAssets
             return true;
         }
 
-        public static List<Figure> CopyActiveFigures()      //         trasform to package
+        public static List<PlayerServiceReference.FigurePackage> CopyActiveFigures()
         {
-            List<Figure> copiedUnits = new List<Figure>();
+            List<PlayerServiceReference.FigurePackage> copiedUnits = new List<PlayerServiceReference.FigurePackage>();
             foreach (Figure figure in _activeAllyFigures)
             {
-                //copiedUnits.Add(Instantiate(figure));
+                copiedUnits.Add(figure.ToFigurePackage());
             }
             return copiedUnits;
         }
@@ -211,7 +211,6 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
         private static void SpawnChessFigure(int index, int row, int column)
         {
-            // quarterion - for orientation, change if needed (default Quaternion.identity)
             Figures[row, column] = AllFigures[index];
             AllFigures[index].MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
             Figures[row, column].Position.Row = row;
@@ -237,10 +236,12 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Figures = new FigureGraph();
 
+            AllFigures = new List<Figure>();
             _activeAllyFigures = new List<Figure>();
             _activeEnemyFigures = new List<Figure>();
 
-            Dijkstra.SetGraph(Figures);
+            Pathfinding.PathFinder pathFindingAlgorithm = new Pathfinding.PathFinder(new Dijkstra(8, 8, 8));
+            pathFindingAlgorithm.SetGraph(Figures);
 
             MatchManager.Instance.OnStateChage += matchState =>
             {
@@ -367,14 +368,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
 
             Figures[row, column] = _selectedFigure;
             AssignFigureToPosition(_selectedFigure, row, column);
-
-            //boardTiles[selectionRow, selectionColumn].ChangeColor(BoardTile.DefaultColor);
         }
 
         private static void AssignFigureToPosition(Figure figure, int row, int column)
         {
             figure.MainViewModel.MoveTo(PointToPoint3D(GetTileCenter(row, column)));
             int previousRow = figure.Position.Row;
+            int previousColumn = figure.Position.Column;
             figure.Position.Row = row;
             figure.Position.Column = column;
             figure.Untargetable = row == -1;
@@ -390,6 +390,13 @@ namespace YetAnotherAutoChess.Business.GameAssets
                     AddToBoard(figure);
                 }
             }
+
+            PlayerServiceReference.FigurePackage figurePackage = figure.ToFigurePackage();
+            figurePackage.OriginalRow = previousRow;
+            figurePackage.OriginalColumn = previousColumn;
+            figurePackage.NewRow = row;
+            figurePackage.NewColumn = column;
+            PlayerClient.MoveUnit(figurePackage);
         }
 
         private static void RemoveFromBoard(Figure figure)
@@ -409,6 +416,11 @@ namespace YetAnotherAutoChess.Business.GameAssets
         private static Point GetTileCenter(int x, int y)
         {
             return _boardTiles[x, y].GetTileCenter();
+        }
+
+        public static System.Windows.Point GetTileScreenPosition(int x, int y)
+        {
+            return _boardTiles[x, y].GetTileScreenPosition();
         }
 
         private static void SetUpTheTiles()

@@ -88,6 +88,16 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
             }
         }
 
+        public delegate void FigureSpawn(Figure figure, Figure encirclement);
+
+        public static void SpawnFigure(Figure figure, Figure encirclement)
+        {
+            Point p = Pathfinding.PathFinder.Instance.FindNextStep(encirclement);
+            Board.ImpaleToPosition(encirclement, p.X, p.Y);
+            figure.Position.Column = (int)p.X;
+            figure.Position.Row = (int)p.Y;
+        }
+
         #region Mythology
         #region Aztec
         // All damage is physical damage
@@ -176,7 +186,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
         }
         #endregion
         #region Egyptian
-        // Burn enemies around
+        // Burn surrounding enemies 
         private static Buff CreateEgyptian(int stage)
         {
             float damage = 0;
@@ -740,6 +750,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
             }
 
             BuffEarth buff = new BuffEarth(golemSize);
+            buff.OnFigureSpawn += SpawnFigure;
 
             return buff;
         }
@@ -748,9 +759,10 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
         {
             private static bool _triggered = false;
             private GolemSize _golemSize;
-            private Unit _unit;
             private Figure _figure;
             private Figure _source;
+
+            public event FigureSpawn OnFigureSpawn;
 
             public BuffEarth(GolemSize golemSize) : base(new Buff.BuffProperties(), float.PositiveInfinity)
             {
@@ -765,36 +777,33 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
 
             public override float ApplyToProperties(Unit.Properties property)
             {
+                Unit unit;
                 if (!_triggered)
                 {
                     switch (_golemSize)
                     {
                         case GolemSize.Small:
-                            //_unit = new EarthSmallGolem();
+                            unit = FigureManager.CreateUnit("EarthSmallGolem");
                             break;
                         case GolemSize.Big:
-                            //_unit = new EarthBigGolem();
+                            unit = FigureManager.CreateUnit("EarthBigGolem");
                             break;
 
                         default:
                             return 0;
                     }
 
-                    _figure = FigureManager.CreateFigure(_unit, Enums.Piece.Pawn);
-                    Point p = Dijkstra.FindNextStep(_source);
-                    Board.ImpaleToPosition(_source, p.X, p.Y);
-                    _figure.Position.Column = (int)p.X;
-                    _figure.Position.Row = (int)p.Y;
-
+                    _figure = FigureManager.CreateFigure(unit, Enums.Piece.Pawn);
                     _triggered = true;
+
+                    OnFigureSpawn(_figure, _source);
                 }
                 return 0;
             }
 
             public new void Dispell()
             {
-                _unit.Destroy();
-                //_figure.Destroy();
+                _figure.Destroy();
                 base.Dispell();
             }
         }
@@ -959,6 +968,7 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
         #endregion
         #region Trickster
         // Makes a silenced clone of himself
+        // Tricksters must implement ICloneable
         private static Buff CreateTrickster(int stage)
         {
             switch (stage)
@@ -966,15 +976,38 @@ namespace YetAnotherAutoChess.Business.BoardFigureScripts.Synergies
                 case 1:
                 case 2:
                 case 3:
+                    break;
                 default:
                     return null;
             }
-            // TO-DO: create clone
+
+            BuffTrickster buff = new BuffTrickster();
+            buff.OnFigureSpawn += SpawnFigure;
+
+            return buff;
         }
 
-        public class BuffTrickster : Buff
+        public class BuffTrickster : Buff, BuffExtensions.ISourcable
         {
+            private Figure _source;
 
+            public event FigureSpawn OnFigureSpawn;
+
+            public void AddSource(Figure figure)
+            {
+                _source = figure;
+            }
+
+            public override float ApplyToProperties(Unit.Properties property)
+            {
+                Unit unit = ((Units.ICloneable)_source.Unit).Clone();
+
+                Figure figure = FigureManager.CreateFigure(unit, Enums.Piece.Pawn);
+
+                OnFigureSpawn(figure, _source);
+
+                return 0;
+            }
         }
         #endregion
         #region Underworld

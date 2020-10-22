@@ -16,6 +16,8 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
         private static int _selectionColumn;
         private static BoardTile _lastTilePassed;
 
+        private static System.Windows.Media.Color _selectColor = System.Windows.Media.Colors.Green;
+
         private static void ShowSelectedFigureTooltip(int row, int column)
         {
             if (Board.Figures[row, column] != null)
@@ -54,19 +56,22 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
             {
                 if (_selectedFigure == null)
                 {
-                    SelectFigure(_selectionRow, _selectionColumn);
-                    _lastTilePassed = Board.GetSelectedBoardTile(_selectionRow, _selectionColumn);
-                    _lastTilePassed.ChangeColor(System.Windows.Media.Colors.AliceBlue);
+                    if(SelectFigure(_selectionRow, _selectionColumn))
+                    {
+                        _lastTilePassed = Board.GetSelectedBoardTile(_selectionRow, _selectionColumn);
+                        _lastTilePassed.ChangeColor(_selectColor);
+                    }
                 }
             }
         }
 
-        private static void SelectFigure(int row, int column)
+        private static bool SelectFigure(int row, int column)
         {
             if (Board.Figures[row, column] == null)
-                return;
+                return false;
 
             _selectedFigure = Board.Figures[row, column];
+            return true;
         }
 
         public static void OnLeftMouseButtonHold(SceneNode sceneNode)
@@ -77,26 +82,33 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
 
         private static void MoveFigureWhileSelected()
         {
+            if (_selectedFigure == null)
+                return;
+
             if (_selectionColumn >= 0 && _selectionRow >= -1)
             {
                 BoardTile boardTile = Board.GetSelectedBoardTile(_selectionRow, _selectionColumn);
-                //if (_selectedFigure != null)
-                {
-                    if (_selectionRow > 3)
-                    {
-                        _selectionRow = 3;
-                    }
-                    boardTile.ChangeColor(System.Windows.Media.Colors.LawnGreen);
 
-                    Point p = boardTile.GetTileCenter();
-                    _selectedFigure.MainViewModel.MoveTo(new System.Windows.Media.Media3D.Point3D(p.X, p.Y, 0));
+                if (_selectionRow > 3)
+                {
+                    _selectionRow = 3;
                 }
+
+                Point p = boardTile.GetTileCenter();
+                _selectedFigure.MainViewModel.MoveTo(PointToPoint3D(p));
+
                 if (boardTile != _lastTilePassed)
                 {
                     _lastTilePassed.ChangeColor(BoardTile.DefaultColor);
                     _lastTilePassed = boardTile;
+                    boardTile.ChangeColor(_selectColor);
                 }
             }
+        }
+
+        public static System.Windows.Media.Media3D.Point3D PointToPoint3D(Point p)
+        {
+            return new System.Windows.Media.Media3D.Point3D(p.X, 0, p.Y);
         }
 
         public static void OnLeftMouseButtonUp(SceneNode sceneNode)
@@ -113,7 +125,11 @@ namespace YetAnotherAutoChess.Business.GameAssets.BoardAssets
                     _selectionRow = 3;
                 }
                 if (_selectedFigure != null)
+                {
                     Board.MoveFigureToPoisition(_selectedFigure, _selectionRow, _selectionColumn);
+                    _lastTilePassed.ChangeColor(BoardTile.DefaultColor);
+                    _selectedFigure = null;
+                }
             }
         }
 

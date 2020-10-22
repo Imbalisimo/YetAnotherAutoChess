@@ -16,6 +16,8 @@ namespace YetAnotherAutoChess.Business
             public int Column;
         }
 
+        public new MainViewModel MainViewModel { get => Unit.MainViewModel; }
+
         public List<Figure> Sacrifices;
 
         public Place Position;
@@ -27,9 +29,14 @@ namespace YetAnotherAutoChess.Business
         //public FigureUIManager FigureUIManager;
         public int Cost;
 
-        public Enums.Synergy Mythology { get => Unit.Stats.Synergies[0]; }
-        public Enums.Synergy Diety { get => Unit.Stats.Synergies[1]; }
-        public Enums.Synergy AdditionalDiety { get => Unit.Stats.Synergies.Count > 2 ? Unit.Stats.Synergies[2] : Enums.Synergy.none; }
+        public Enums.Synergy Mythology { get => 
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[0]; }
+        public Enums.Synergy Diety { get =>
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[1]; }
+        public Enums.Synergy AdditionalDiety { get =>
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList().Count > 2 ?
+                BoardFigureScripts.Synergies.SynergyManager.GetIndividualSynergies(Unit.Stats.Synergies).ToList()[2] :
+                Enums.Synergy.none; }
 
         public int Star { get => Unit.Star; }
 
@@ -83,7 +90,7 @@ namespace YetAnotherAutoChess.Business
             if (Piece.PieceType == Enums.Piece.Knight && _startOfMatch)
             {
                 _startOfMatch = false;
-                Point destination = Dijkstra.KnightJumpOnStart(this);
+                Point destination = Pathfinding.PathFinder.Instance.KnightJumpOnStart(this);
                 MoveTo((int)destination.X, (int)destination.Y);
                 return;
             }
@@ -101,7 +108,7 @@ namespace YetAnotherAutoChess.Business
                 CastAbility();
                 return;
             }
-            if (_target != null && !_target.Untargetable && Dijkstra.IsEnemyInRange(this, _target))
+            if (_target != null && !_target.Untargetable && Pathfinding.PathFinder.Instance.IsEnemyInRange(this, _target))
             {
                 if (Unit.Stats.Disarmed <= 0)
                 {
@@ -137,7 +144,7 @@ namespace YetAnotherAutoChess.Business
 
         private bool TakeAStep(int range)
         {
-            Figure nextTarget = Dijkstra.EnemyInsideRange(this, range);
+            Figure nextTarget = Pathfinding.PathFinder.Instance.EnemyInsideRange(this, range);
             if (nextTarget == null)
             {
                 ApproachAnEnemy();
@@ -154,9 +161,9 @@ namespace YetAnotherAutoChess.Business
         {
             Point nextPosition;
             if (Piece.PieceType != Enums.Piece.Knight)
-                nextPosition = Dijkstra.FindNextStep(this);
+                nextPosition = Pathfinding.PathFinder.Instance.FindNextStep(this);
             else
-                nextPosition = Dijkstra.FindNextStep(this, true);
+                nextPosition = Pathfinding.PathFinder.Instance.FindNextStep(this, true);
             if (nextPosition.X < 0 || nextPosition.Y < 0)
                 return;
             MoveTo(nextPosition.X, nextPosition.Y);
@@ -361,6 +368,26 @@ namespace YetAnotherAutoChess.Business
                 Unit.MakeMeATwoStar();
                 //FigureUIManager.PromoteToTwoStar();
             }
+        }
+
+        public PlayerServiceReference.FigurePackage ToFigurePackage()
+        {
+            PlayerServiceReference.FigurePackage figure = new PlayerServiceReference.FigurePackage();
+            figure.Name = Unit.Name;
+            figure.NewRow = Position.Row;
+            figure.NewColumn = Position.Column;
+            figure.Piece = Piece.PieceType.ToString();
+            figure.PieceToggled = Piece.Toggled;
+            figure.Star = Star.ToString();      // STAR NEEDS TO BE INTEGER
+            return figure;
+        }
+
+        public void ApplyFigurePackageProperties(PlayerServiceReference.FigurePackage figure)
+        {
+            Position.Row = figure.NewRow;
+            Position.Column = figure.NewColumn;
+            Unit.Star = Int32.Parse(figure.Star);
+            if (figure.PieceToggled) Piece.Toggle();
         }
     }
 }

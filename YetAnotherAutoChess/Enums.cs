@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace YetAnotherAutoChess.Enums
 {
+    public enum Tile
+    {
+        Board,
+        BenchTile
+    }
+
     public enum GameStates
     {
         Menu,
@@ -43,6 +49,7 @@ namespace YetAnotherAutoChess.Enums
         Deity
     }
 
+    [Flags]
     public enum Synergy
     {
         Aztec,
