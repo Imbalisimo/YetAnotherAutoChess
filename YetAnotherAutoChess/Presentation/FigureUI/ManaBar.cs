@@ -19,7 +19,7 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
         }
         public void Move(double x, double y)
         {
-            this.Margin = new System.Windows.Thickness(x/25, 0, 0, (y + 4)/25);
+            this.Margin = new System.Windows.Thickness(x /8 + 191.1, 0, 0, (y + 30) /7.15 - 470);
         }
 
         public void SetMana(int mana)

@@ -13,7 +13,6 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
         public HPBar(double positionX, double positionY)
         {
             MainCanvas.instance.Children.Add(this);
-            MainCanvas.instance.SizeChanged += CoordsChangeOnSizeChange;
             this.Height = 10;
             this.Width = 40;
 
@@ -23,32 +22,9 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
             this.Value = 100;
         }
 
-        private void CoordsChangeOnSizeChange(object sender, SizeChangedEventArgs e)
-        {
-            Canvas canvas = sender as Canvas;
-
-            SizeChangedEventArgs canvas_Changed_Args = e;
-
-            if (canvas_Changed_Args.PreviousSize.Width == 0) return;
-
-
-            double old_Height = canvas_Changed_Args.PreviousSize.Height;
-            double new_Height = canvas_Changed_Args.NewSize.Height;
-            double old_Width = canvas_Changed_Args.PreviousSize.Width;
-            double new_Width = canvas_Changed_Args.NewSize.Width;
-
-            
-        }
-
-
-        public void Move(double x, double y, int currentSizeX, int currentSizeY)
-        {
-            this.Margin = new System.Windows.Thickness(x/currentSizeX, 0, 0, (y-4)/currentSizeY);
-        }
-
         public void Move(double x, double y)
         {
-            this.Margin = new System.Windows.Thickness(x/4, 0, 0, (y - 4)/4);
+            this.Margin = new System.Windows.Thickness(x/8 + 191.1, 0, 0,(y - 30)/7.15 - 470);
             Console.WriteLine("Coord X: " + x);
             Console.WriteLine("Coord Y: " + y);
         }

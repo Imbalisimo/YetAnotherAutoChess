@@ -26,6 +26,10 @@ namespace YetAnotherAutoChess
             AddEvent(Element3D.MouseDown3DEvent, PieceMover.OnLeftMouseButtonDown);
             AddEvent(Element3D.MouseMove3DEvent, PieceMover.OnLeftMouseButtonHold);
             AddEvent(Element3D.MouseUp3DEvent, PieceMover.OnLeftMouseButtonUp);
+
+            //this.WindowStyle = WindowStyle.None;
+            this.ResizeMode = ResizeMode.NoResize;
+
         }
 
         private void InitializeAssets()
