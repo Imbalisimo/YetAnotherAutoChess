@@ -11,14 +11,15 @@ namespace YetAnotherAutoChess.Presentation.FigureUI
     {
         public ManaBar(double positionX, double positionY)
         {
+            MainCanvas.instance.Children.Add(this);
             this.Foreground = System.Windows.Media.Brushes.Blue;
             this.Height = 10;
-            this.Width = 50;
+            this.Width = 40;
             Move(positionX, positionY + 4);
         }
         public void Move(double x, double y)
         {
-            this.Margin = new System.Windows.Thickness(x, y + 4, 0, 0);
+            this.Margin = new System.Windows.Thickness(x /8 + 191.1, 0, 0, (y + 30) /7.15 - 470);
         }
 
         public void SetMana(int mana)

@@ -181,6 +181,8 @@
     <Compile Include="Presentation\FigureUI\IFigureUI.cs" />
     <Compile Include="Presentation\FigureUI\ManaBar.cs" />
     <Compile Include="Presentation\FigureUI\RankImage.cs" />
+    <Compile Include="Presentation\MainCanvas.cs" />
+    <Compile Include="Presentation\MainGrid.cs" />
     <Compile Include="Presentation\Shop\DefaultPieceSelector.cs" />
     <Compile Include="Presentation\PlayersUI.cs" />
     <Compile Include="Presentation\Shop\ShopUI.cs" />

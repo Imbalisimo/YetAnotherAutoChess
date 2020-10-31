@@ -5,12 +5,12 @@
              StartupUri="MainWindow.xaml">
   <Application.Resources>
         <Canvas x:Key="unitStatusBar"  x:Shared="false" SizeChanged="Canvas_SizeChanged">
-            <ProgressBar x:Name="unitManaBar" Height="10" Width="100" Value="50" Foreground="#FF0639B0"/>
-            <ProgressBar x:Name="unitHealthBar"  Width="100" Height="5" Value="100"/>
+            <!--<ProgressBar x:Name="unitManaBar" Height="10" Width="100" Value="50" Foreground="#FF0639B0"/>-->
+            <!--<ProgressBar x:Name="unitHealthBar"  Width="100" Height="5" Value="100"/>-->
             <Image Height="10" Canvas.Left="100" Width="10"/>
         </Canvas>
 
-        <Grid x:Key="userMainGui"  HorizontalAlignment="Center" Height="100" VerticalAlignment="Bottom"  Margin="90,300,0,0" Canvas.Bottom="0">
+    <Grid x:Key="userMainGui"  HorizontalAlignment="Center" Height="100" VerticalAlignment="Bottom"  Margin="90,300,0,0" Canvas.Bottom="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition> 
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="72" Margin="0,14,0,0">
+      <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Height="72" Margin="0,14,0,0">
         <Image Height="72" Width="137"/>
       </Button>
       <Button HorizontalAlignment="Left" Height="72" Margin="139,14,0,0" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2">
